@@ -1,0 +1,5 @@
+.banner {
+  background-image: linear-grandient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))
+    url(https://i.postimg.cc/sghn1sh4/banner.png);
+    background-size: cover;
+}
