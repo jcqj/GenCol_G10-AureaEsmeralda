@@ -1,0 +1,45 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+.footer-custom {
+    background-color: #0f5c4d;
+}
+.footer-custom .nav-link {
+    color: white;
+}
+
+.footer-custom .nav-link:hover {
+    color: #d4af37;
+}
+.footer-ayuda h5 {
+    color: white;
+}
+
+.footer-info a {
+    color: #ddd;
+}
+
+.footer-copy {
+    text-align: center;
+}
+.footer-custom a:hover {
+    color: #d4af37;
+}
+.social-icon {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0 10px;   /* separación horizontal */
+}
+.social-icon:hover {
+    color: #d4af37;
+}
