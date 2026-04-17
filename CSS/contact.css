@@ -1,5 +1,18 @@
 .banner {
-  background-image: linear-grandient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))
-    url(https://i.postimg.cc/sghn1sh4/banner.png);
-    background-size: cover;
+  height: 25rem;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("https://i.postimg.cc/QCHXktL9/banner.png");
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #ffff;
+}
+
+input:hover {
+  border-color: green;
 }
