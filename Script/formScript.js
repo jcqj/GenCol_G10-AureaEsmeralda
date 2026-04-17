@@ -76,3 +76,4 @@ form.addEventListener("submit", async (e) => {
         estado.textContent = "Error de conexión. Intenta de nuevo.";
     }
 });
+
