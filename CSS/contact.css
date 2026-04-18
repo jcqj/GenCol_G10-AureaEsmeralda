@@ -1,7 +1,8 @@
+/* banner encabezado de pagina  */
 .banner {
   height: 25rem;
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
     url("https://i.postimg.cc/QCHXktL9/banner.png");
   background-size: cover;
   background-position: center;
@@ -13,6 +14,176 @@
   color: #ffff;
 }
 
-input:hover {
-  border-color: green;
+
+.bannerContenedor h1 {
+  font-size: 3rem;
+  text-shadow: 0.1rem 0.1rem 0.6rem rgba(0, 0, 0, 0.7); /* Sombra oscura para contraste */
+  margin-bottom: 1rem;
+}
+
+.bannerContenedor p {
+  text-shadow: 0.06rem 0.06rem 0.3rem rgba(0, 0, 0, 0.6);
+} 
+
+
+/* titulost */
+
+h1, h2, p, .card-header {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500
+}
+
+/* Formulario */
+
+#contacto h2 {
+  text-align: center;
+}
+
+.form-control {
+  border-color: #787179;
+  margin-bottom: 0.92rem;
+}
+
+label {
+  margin-bottom: 0.12rem;
+}
+
+.form-control:hover {
+  border-color: #39885d;
+}
+
+.form-control:focus {
+  border-color: #bc9c22;
+  box-shadow: 0 0 0.3rem #bc9c22;
+}
+
+.form-control::placeholder {
+  color: #888;
+  opacity: 1;
+}
+
+#nombre {
+  text-align: left;
+}
+
+/* boton del formulario */
+.btnEnviar {
+  background: linear-gradient(135deg, #013927, #025c3f);
+  color: white;
+
+  padding: 0.75rem 1.37rem;
+  border: none;
+  border-radius: 0.62rem;
+  display: block;
+  margin-left: auto;
+
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+
+  box-shadow: 0 0.18rem 0.62rem rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.btnEnviar:hover {
+  transform: translateY(-0.12rem);
+  box-shadow: 0 0.37rem 1rem rgba(0, 0, 0, 0.22);
+  background: linear-gradient(135deg, #025c3f, #013927);
+}
+
+.btnEnviar:active {
+  transform: translateY(0.06rem);
+  box-shadow: 0 0.12rem 0.37rem rgba(0, 0, 0, 0.15);
+}
+
+/* mensajes de error en formulario */
+
+.error {
+  color: #dc3545;
+  display: block;
+  margin: 0.12rem 0 0.37rem 0;
+}
+
+
+/* terjata de inforamcion de contacto */
+
+.iconContacto {
+  font-size: 3.12rem;
+  color: rgb(188, 156, 34);
+  display: block;        
+  margin-bottom: 1.56rem;
+}
+
+
+#info,
+#mapa .col-md-6 {
+  margin-left: auto;
+  margin-right: 0;
+  max-width: 25rem;
+  width: 100%;
+}
+
+.infoCard {
+  width: 100%;
+  max-width: 18rem;
+}
+
+
+/* Preguntas frecuentes estilo en el acordion */
+
+.accordion-button:not(.collapsed) {
+  background-color: #025c3f; 
+  color: white;
+}
+
+.accordion-button:not(.collapsed)::after {
+  filter: invert(1);
+}
+
+.accordion-button:hover::after {
+  filter: invert(1);
+}
+
+.accordion-button:hover {
+  background-color: #013927;
+  color: white;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.1rem #bc9c22;
+}
+
+
+
+/* mapa y su titulo */
+
+.iconMapa {
+  font-size: 3.12rem;
+  color: rgb(188, 156, 34);
+  display: block;        
+  margin-bottom: 1.56rem;
+}
+
+
+.nombreMapa {
+  text-align: center;
+}
+
+
+.mapaCol .card {
+  max-width: 100%;
+  margin-left: auto;
+}
+
+.mapaContenedor {
+  width: 100%;
+  margin-top: 1.25rem;
+  border-color: #013927;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.mapaContenedor iframe {
+  width: 100%;
+  display: block;
 }
