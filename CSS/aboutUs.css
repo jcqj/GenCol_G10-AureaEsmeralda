@@ -1,13 +1,13 @@
 /* .card {
   background-color: rgba(255, 255, 255, 0.8);
 } */
-html{
+html {
     scroll-behavior: smooth;
 }
 
 .about-section {
     position: relative;
-    min-height: 100vh; 
+    min-height: 100vh;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -16,8 +16,11 @@ html{
 
 .bg-blur {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url('../assets/esmeraldasbg.jpg'); 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/esmeraldasbg.jpg');
     background-size: cover;
     background-position: center;
     filter: blur(1px);
@@ -46,13 +49,22 @@ html{
 
 .about-logo {
     max-width: 220px;
-    background-color: #ffffff; /* agrega el fondo blanco */
+    background-color: #ffffff;
+    /* agrega el fondo blanco */
     border-radius: 1rem;
     padding: 0.75rem 1rem;
 }
 
 /* card de valore/mision/vision */
-.misionAurea, .visionAurea, .valoresAurea {
+
+.icono-mvv {
+    display: block;
+    margin-bottom: 1.56rem;
+}
+
+.misionAurea,
+.visionAurea,
+.valoresAurea {
     border-radius: 1.3rem;
     padding: 1.3rem;
 }
@@ -79,7 +91,7 @@ html{
 .tituloMVV {
     color: #ffffff;
     font-family: 'Quicksand', sans-serif;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     text-align: center;
     margin-bottom: 1.2rem;
     letter-spacing: 0.2rem;
@@ -91,8 +103,9 @@ html{
 .card {
     background: rgba(7, 18, 21, 0.72) !important;
     backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);/*este webkit le da como rodenes a*/
-    border: 1px solid rgba(255, 255, 255, 0.2) !important; 
+    -webkit-backdrop-filter: blur(30px);
+    /*este webkit le da como rodenes a*/
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
     /* color: white !important; */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -100,17 +113,19 @@ html{
 
 .card:not(.misionAurea):not(.visionAurea):not(.valoresAurea):hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     background: rgba(18, 18, 18, 0.15) !important;
 }
+
 .card .card-title {
     color: #ffffff;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .card .card-text {
     color: #e0e0e0;
 }
+
 .card .btn-outline-dark {
     color: white !important;
     border-color: rgba(255, 255, 255, 0.5) !important;
@@ -132,9 +147,9 @@ html{
 }
 
 #sobreNosotros {
-  padding-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 
-.texto-mas-descripcion{
+.texto-mas-descripcion {
     color: #ffffff;
 }
