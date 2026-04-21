@@ -11,7 +11,7 @@ footer {
     margin-top: auto;
 }
 .footer-custom {
-    background-color: #0f5c4d;
+    background-color: var(--color-primario)
 }
 .footer-custom .nav-link {
     color: white;
@@ -42,4 +42,9 @@ footer {
 }
 .social-icon:hover {
     color: #d4af37;
+}
+
+
+:root{
+    --color-primario:#013927;
 }

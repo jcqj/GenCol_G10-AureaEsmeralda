@@ -1,0 +1,57 @@
+.sidebar {
+    background: #013927;
+    height: 100vh;
+    /* position: fixed; */
+}
+
+.miniSidebar {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(0.6rem);
+    border: 0.06rem solid rgba(255, 255, 255, 0.01);
+    box-shadow: 0 0.5rem 2rem 0 rgba(0, 0, 0, 0.37);
+    border-radius: 0.9rem;
+    padding: 2rem;
+}
+
+.tituloAdministrador {
+    font-family: 'Quicksand', sans-serif;
+    color: #ffff;
+}
+
+
+.sidebar .nav-link.active {
+    background: #39885d;
+}
+
+
+.linkAProductos {
+    color: #ffff !important;
+}
+
+.linkAProductos:hover {
+     color: #39885d !important;  /* en espera no convece el color */
+}
+
+.sidebar .dropdown img {
+    box-shadow: 0 0.25rem 0.6rem rgba(0, 0, 0, 0.2),
+    0 0 0.5rem rgba(255, 255, 255, 0.3); 
+}
+
+.sidebar .dropdown-toggle::after {
+    border-top: 0.3rem solid #fff;
+}
+
+/* botones */
+
+#btnAnadir {
+    background: linear-gradient(135deg, #013927, #025c3f);
+    border: none;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+#btnAnadir:hover {
+    transform: translateY(-0.12rem);
+    background: linear-gradient(135deg, #025c3f, #013927);
+}
+
