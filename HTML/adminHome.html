@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../CSS/nav.css">
+    <link rel="stylesheet" href="../CSS/adminHome.css">
+</head>
+
+<body>
+    <!--!INICIO SIDEBAR-->
+    <aside class="flex-shrink-0 p-3 bg-body-tertiary sidebar">
+        <div class="offcanvas-md offcanvas-start sidebar" tabindex="-1" id="sidebar">
+
+            <div class="offcanvas-header d-md-none">
+                <h5 class="offcanvas-title">Administrador</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+
+            <div class="offcanvas-body d-flex flex-column p-3 bg-body-tertiary">
+
+                <a href="#" class="d-flex align-items-center mb-3 text-decoration-none">
+                    <span class="fs-4">Administrador</span>
+                </a>
+
+                <hr>
+
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="admin.html" class="nav-link active">Home</a>
+                    </li>
+                    <li>
+                        <a href="adminAddProduct.html" class="nav-link">Productos</a>
+                    </li>
+                </ul>
+
+                <hr>
+
+                <div class="dropdown mt-auto">
+                    <a  class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown">
+                        <img src="https://github.com/mdo.png" width="32" class="rounded-circle me-2">
+                        <strong>Admin</strong>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </aside>
+    <button class="btn btn-dark d-md-none m-3" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+        ☰
+    </button>
+    <main>
+        <div class="admin-topbar d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="mb-0">Panel Administrador</h4>
+                <small class="text-muted">Resumen general</small>
+            </div>
+        </div>
+
+        <!-- CARDS -->
+        <div class="row g-4">
+
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 text-center">
+                    <div class="card-body">
+                        <h6 class="text-muted">Productos</h6>
+                        <h3 class="fw-bold">
+                            <span id="totalProductos">0</span>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 text-center">
+                    <div class="card-body">
+                        <h6 class="text-muted">Pedidos</h6>
+                        <h3 class="fw-bold">
+                            <span id="totalPedidos">0</span>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        </div>
+    </main>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="../Script/script.js"></script>
+
+</body>
+
+
+</html>
