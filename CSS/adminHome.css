@@ -10,16 +10,11 @@ body {
 
 /*SIDEBAR*/
 .sidebar {
+  --bs-offcanvas-width: 280px;
   background: linear-gradient(180deg, #0f5c4d, #39885d);
   width: 280px;
+  max-width: 280px;
   color: #d8d2c4;
-}
-
-/* contenedor interno tipo glass */
-.sidebar .offcanvas-body {
-  background: rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(10px);
-  border-right: 1px solid rgba(255,255,255,0.08);
 }
 
 /* links */
@@ -42,6 +37,10 @@ body {
   background-color: #d4af37;
   color: #1c1c1c;
   font-weight: 600;
+}
+/*boton de cerrar sidebar*/
+.sidebar .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
 }
 
 /*MAIN*/
@@ -80,18 +79,13 @@ main {
 @media (max-width: 768px) {
 
   .sidebar {
-    left: -280px;
-    transition: 0.3s;
-    z-index: 1050;
-  }
-
-  .sidebar.active {
-    left: 0;
+    width: 280px;
   }
 
   main {
     margin-left: 0;
     padding: 1.5rem;
+    padding-top: 5rem;
   }
 }
 
@@ -104,6 +98,9 @@ main {
     top: 0;
     left: 0;
     height: 100vh;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none;
   }
 
   main {
