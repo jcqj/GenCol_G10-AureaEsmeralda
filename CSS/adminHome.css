@@ -3,8 +3,8 @@ body {
 }
 
 main {
-  margin-left: 19rem;
   padding: 4rem;
+  min-width: 0
 }
 
 .row {
@@ -15,7 +15,6 @@ main {
 .sidebar {
   background: #013927;
   height: 100vh;
-  /* position: fixed; */
 }
 
 .miniSidebar {
@@ -115,7 +114,7 @@ main {
 
 
 
-/*MOBILE*/
+ /* MOBILE */
 
 @media (max-width: 768px) {
 
@@ -137,7 +136,7 @@ main {
 
 /*desktop*/
 
-@media (min-width: 768px) {
+ @media (min-width: 768px) {
 
   .sidebar {
     position: fixed;
@@ -149,4 +148,4 @@ main {
   main {
     margin-left: 280px;
   }
-}
+} 
