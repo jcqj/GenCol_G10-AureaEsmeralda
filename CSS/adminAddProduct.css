@@ -55,3 +55,26 @@
     background: linear-gradient(135deg, #025c3f, #013927);
 }
 
+/* Placeholder cuando no hay imagen en la fila */
+.img-placeholder {
+    width: 44px;
+    height: 44px;
+    background-color: #f8f9fa;
+    border: 1px dashed #dee2e6;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Íconos de acción más cómodos al hover */
+.btn-editar,
+.btn-borrar {
+    font-size: 1rem;
+    transition: opacity 0.15s;
+}
+
+.btn-editar:hover,
+.btn-borrar:hover {
+    opacity: 0.7;
+}
