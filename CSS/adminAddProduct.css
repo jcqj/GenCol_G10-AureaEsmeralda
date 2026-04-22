@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(135deg, #eef1f3, #d9e2ec);
+    background: linear-gradient(135deg, #eef1f3, #d9e2ec);
 }
 
 .sidebar {
@@ -80,151 +80,6 @@ body {
     background: linear-gradient(135deg, #025c3f, #013927);
 }
 
-#btnLista,
-#btnOrden {
-    background: linear-gradient(135deg, #5c636a, #6c757d);
-    border: none;
-    color: white;
-    transition: all 0.2s ease;
-}
-
-#btnLista:hover,
-#btnOrden:hover {
-    transform: translateY(-0.12rem);
-    background: linear-gradient(135deg, #6c757d, #5c636a);
-}
-
-
-/* cuadro lista producto */
-
-#tablaProductos {
-    border: 0.1rem solid #013927;
-}
-
-#tablaProductos thead {
-    border: 0.1rem solid #013927;
-}
-
-#tablaProductos tbody tr:hover {
-    background-color: rgba(255, 215, 0, 0.1);
-}
-
-.table-responsive {
-    background: rgba(1, 57, 39, 0.85);
-    backdrop-filter: blur(0.6rem);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.4);
-    border-radius: 0.9rem;
-    padding: 2rem;
-
-    overflow-x: auto;
-}
-
-#tablaProductos th:nth-child(9),
-#tablaProductos td:nth-child(9) {
-    min-width: 9.3rem;
-}
-
-
-/* Cambiar el azul por defceto de los form */
-
-
-.form-control:focus,
-.form-select:focus {
-    border-color: #013927 !important;
-    box-shadow: 0 0 0 0.2rem rgba(1, 57, 39, 0.5) !important;
-    outline: none !important;
-}
-
-
-
-
-.form-control:hover,
-.form-select:hover {
-    border-color: #013927;
-}
-
-/* responsive */
-
-/* ===== RESPONSIVE ===== */
-
-/* Tablet (≤ 992px): sidebar se colapsa */
-@media (max-width: 992px) {
-  .d-flex:has(.sidebar) {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    height: auto;
-    width: 100% !important;
-  }
-
-  .miniSidebar {
-    width: 100% !important;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-  }
-
-  .miniSidebar ul.nav {
-    flex-direction: row !important;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 0 !important;
-  }
-
-  .miniSidebar hr {
-    display: none;
-  }
-
-  .miniSidebar .dropdown {
-    margin-left: auto;
-  }
-}
-
-/* Mobile (576px) */
-@media (max-width: 576px) {
-  .admin-header h2 {
-    font-size: 1.1rem;
-  }
-
-  /* botones en fila  */
-  .d-flex.gap-2.mb-3 {
-    flex-wrap: wrap;
-  }
-
-  /* Controles encima de la tabla */
-  .d-flex.justify-content-between.align-items-center.mb-3 {
-    flex-direction: column;
-    align-items: flex-start !important;
-    gap: 0.75rem;
-  }
-
-  /* Buscador ancho completo */
-  #buscador {
-    width: 100% !important;
-  }
-
-  /* Pie de tabla apilado */
-  .d-flex.justify-content-between.align-items-center.mt-2 {
-    flex-direction: column;
-    align-items: flex-start !important;
-    gap: 0.5rem;
-  }
-
-  /* Tabla */
-  .table-responsive {
-    padding: 1rem 0.5rem;
-  }
-
-  /* Modal */
-  .modal-dialog {
-    margin: 0.5rem;
-  }
-}
-
 /* Placeholder cuando no hay imagen en la fila */
 .img-placeholder {
     width: 44px;
@@ -237,7 +92,7 @@ body {
     justify-content: center;
 }
 
-/* Íconos de acción más cómodos al hover */
+/* Íconos de acción más cómodos al hover
 .btn-editar,
 .btn-borrar {
     font-size: 1rem;
@@ -247,4 +102,4 @@ body {
 .btn-editar:hover,
 .btn-borrar:hover {
     opacity: 0.7;
-}
+} */
