@@ -11,16 +11,28 @@ body {
   flex-direction: column;
   background-color: #d8d2c4;
 }
-
-/*SIDEBAR*/
-.sidebar {
-  background-color: var(--color-primario) !important;
-  --bs-offcanvas-bg: var(--color-primario);
-  width: 280px;
-  max-width: 280px;
-
+/*Cards*/
+.card {
+  border-radius: 16px;
+  border: none;
+  transition: 0.3s;
 }
 
+.card:hover {
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+  color: #0f5c4d;
+}
+
+.card h6 {
+  color: #6c757d;
+}
+
+body {
+  background-color: #f8f9fa;
+}
 /* links */
 .sidebar .nav-link {
   color: #d8d2c4;
@@ -29,16 +41,35 @@ body {
   margin-bottom: 5px;
   transition: all 0.3s ease;
 }
+/*SIDEBAR*/
+
+.sidebar {
+  background-color: var(--color-primario) !important;
+  --bs-offcanvas-bg: var(--color-primario);
+  min-height: 100vh;
+  width: 280px;
+  max-width: 280px;
+}
+
+.tituloAdministrador {
+  color: #d4af37;
+  font-weight: 600;
+}
+
+.sidebar .nav-link {
+  color: #d8d2c4;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  transition: 0.2s;
+}
 
 .sidebar .nav-link:hover {
   background: rgba(212, 175, 55, 0.15);
-  color: #d4af37;
-  transform: translateX(4px);
+  color: #ffffff;
 }
 
-/* sidebar activo */
 .sidebar .nav-link.active {
-  background-color: #d4af37;
+  background: #d4af37;
   color: #1c1c1c;
   font-weight: 600;
 }
@@ -90,6 +121,7 @@ main {
     position: fixed;
     top: 0;
     left: 0;
+    width: 280px;
     height: 100vh;
     visibility: visible !important;
     transform: none !important;

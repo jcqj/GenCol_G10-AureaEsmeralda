@@ -21,7 +21,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
         </div>
         <div class="d-flex flex-column flex-shrink-0 p-3 h-100">
-                <span class="fs-4 tituloAdministrador">Administrador</span>
+            <span class="fs-4 tituloAdministrador">Administrador</span>
             <hr>
 
             <ul class="nav flex-column mb-auto">
@@ -52,44 +52,73 @@
         </div>
     </aside>
 
-    <button class="btn d-md-none m-3 admin-toggle-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Abrir menú administrador">
+    <button class="btn d-md-none m-3 admin-toggle-btn" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Abrir menú administrador">
         ☰
     </button>
 
     <main>
-        <div class="admin-topbar d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h4 class="mb-0">Panel Administrador</h4>
-                <small class="text-muted">Resumen general</small>
+        <div class="container">
+
+            <!-- TÍTULO -->
+            <div class="mb-4">
+                <h2 class="fw-bold">Panel Administrador</h2>
+                <p class="text-muted">Resumen general del sistema</p>
             </div>
-        </div>
 
-        <!-- CARDS -->
-        <div class="row g-4">
+            <!-- KPIs -->
+            <div class="row g-4 mb-4">
 
-            <div class="col-md-6">
-                <div class="card shadow-sm border-0 text-center">
-                    <div class="card-body">
-                        <h6 class="text-muted">Productos</h6>
-                        <h3 class="fw-bold">
-                            <span id="totalProductos">0</span>
-                        </h3>
+                <div class="col-md-3 col-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h6 class="text-muted">Productos</h6>
+                            <h3 class="fw-bold" id="totalProductos">0</h3>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-6">
-                <div class="card shadow-sm border-0 text-center">
-                    <div class="card-body">
-                        <h6 class="text-muted">Pedidos</h6>
-                        <h3 class="fw-bold">
-                            <span id="totalPedidos">0</span>
-                        </h3>
+                <div class="col-md-3 col-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h6 class="text-muted">Pedidos</h6>
+                            <h3 class="fw-bold" id="totalPedidos">0</h3>
+                        </div>
                     </div>
                 </div>
+
+                <div class="col-md-3 col-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h6 class="text-muted">Stock bajo</h6>
+                            <h3 class="fw-bold" id="stockBajo">0</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h6 class="text-muted">Agotados</h6>
+                            <h3 class="fw-bold" id="agotados">0</h3>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-        </div>
+            <!-- ÚLTIMOS PEDIDOS -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3">Últimos pedidos</h5>
+
+                    <ul class="list-group" id="listaPedidos">
+                        <li class="list-group-item text-muted">
+                            No hay pedidos aún
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
         </div>
     </main>
@@ -98,6 +127,7 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <script src="../Script/script.js"></script>
+    <script src="../Script/adminDashboard.js"></script>
 
 </body>
 
