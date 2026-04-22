@@ -1,3 +1,7 @@
+ :root{
+    --color-primario:#013927;
+}
+
 html, body {
   height: 100%;
 }
@@ -10,11 +14,11 @@ body {
 
 /*SIDEBAR*/
 .sidebar {
-  --bs-offcanvas-width: 280px;
-  background: linear-gradient(180deg, #0f5c4d, #39885d);
+  background-color: var(--color-primario) !important;
+  --bs-offcanvas-bg: var(--color-primario);
   width: 280px;
   max-width: 280px;
-  color: #d8d2c4;
+
 }
 
 /* links */
@@ -57,21 +61,10 @@ main {
   border-radius: 16px;
   background-color: white;
   border: none;
-  transition: all 0.3s ease;
 }
 
 .card:hover {
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-/* títulos dentro de cards */
-.card h6 {
-  color: #39885d;
-  font-weight: 500;
-}
-
-.card h3 {
-  color: #1c1c1c;
 }
 
 /*MOBILE*/
