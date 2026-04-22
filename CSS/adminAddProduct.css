@@ -1,3 +1,7 @@
+body {
+    background: linear-gradient(135deg, #eef1f3, #d9e2ec);
+}
+
 .sidebar {
     background: #013927;
     height: 100vh;
@@ -18,23 +22,44 @@
     color: #ffff;
 }
 
+.sidebar .nav-link {
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.3rem;
+    transition: all 0.3s ease;
+}
 
 .sidebar .nav-link.active {
     background: #39885d;
 }
 
+.sidebar .nav-link.active:hover {
+    color: #bc9c22 !important;
+    background-color: #013927;
+    border: 0.1rem solid #bc9c22;
+    transform: translateX(0.3rem);
+}
+
+
+.linkHome {
+    color: #fff !important;
+}
 
 .linkAProductos {
     color: #ffff !important;
 }
 
-.linkAProductos:hover {
-     color: #39885d !important;  /* en espera no convece el color */
+
+.linkHome:hover {
+    color: #bc9c22 !important;
+    background-color: #013927;
+    border: 0.1rem solid #bc9c22;
+    transform: translateX(0.3rem);
 }
+
 
 .sidebar .dropdown img {
     box-shadow: 0 0.25rem 0.6rem rgba(0, 0, 0, 0.2),
-    0 0 0.5rem rgba(255, 255, 255, 0.3); 
+        0 0 0.5rem rgba(255, 255, 255, 0.3);
 }
 
 .sidebar .dropdown-toggle::after {
@@ -55,3 +80,26 @@
     background: linear-gradient(135deg, #025c3f, #013927);
 }
 
+/* Placeholder cuando no hay imagen en la fila */
+.img-placeholder {
+    width: 44px;
+    height: 44px;
+    background-color: #f8f9fa;
+    border: 1px dashed #dee2e6;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Íconos de acción más cómodos al hover
+.btn-editar,
+.btn-borrar {
+    font-size: 1rem;
+    transition: opacity 0.15s;
+}
+
+.btn-editar:hover,
+.btn-borrar:hover {
+    opacity: 0.7;
+} */
