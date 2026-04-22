@@ -1,3 +1,7 @@
+body {
+  background: linear-gradient(135deg, #eef1f3, #d9e2ec);
+}
+
 .sidebar {
     background: #013927;
     height: 100vh;
@@ -18,23 +22,44 @@
     color: #ffff;
 }
 
+.sidebar .nav-link {
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.3rem;
+    transition: all 0.3s ease;
+}
 
 .sidebar .nav-link.active {
     background: #39885d;
 }
 
+.sidebar .nav-link.active:hover {
+    color: #bc9c22 !important;
+    background-color: #013927;
+    border: 0.1rem solid #bc9c22;
+    transform: translateX(0.3rem);
+}
+
+
+.linkHome {
+    color: #fff !important;
+}
 
 .linkAProductos {
     color: #ffff !important;
 }
 
-.linkAProductos:hover {
-     color: #39885d !important;  /* en espera no convece el color */
+
+.linkHome:hover {
+    color: #bc9c22 !important;
+    background-color: #013927;
+    border: 0.1rem solid #bc9c22;
+    transform: translateX(0.3rem);
 }
+
 
 .sidebar .dropdown img {
     box-shadow: 0 0.25rem 0.6rem rgba(0, 0, 0, 0.2),
-    0 0 0.5rem rgba(255, 255, 255, 0.3); 
+        0 0 0.5rem rgba(255, 255, 255, 0.3);
 }
 
 .sidebar .dropdown-toggle::after {
@@ -54,4 +79,70 @@
     transform: translateY(-0.12rem);
     background: linear-gradient(135deg, #025c3f, #013927);
 }
+
+#btnLista,
+#btnOrden {
+    background: linear-gradient(135deg, #5c636a, #6c757d);
+    border: none;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+#btnLista:hover,
+#btnOrden:hover {
+    transform: translateY(-0.12rem);
+    background: linear-gradient(135deg, #6c757d, #5c636a);
+}
+
+
+/* cuadro lista producto */
+
+#tablaProductos {
+    border: 0.1rem solid #013927;
+}
+
+#tablaProductos thead {
+    border: 0.1rem solid #013927;
+}
+
+#tablaProductos tbody tr:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+}
+
+.table-responsive {
+    background: rgba(1, 57, 39, 0.85);
+    backdrop-filter: blur(0.6rem);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.4);
+    border-radius: 0.9rem;
+    padding: 2rem;
+
+    overflow-x: auto;
+}
+
+#tablaProductos th:nth-child(9),
+#tablaProductos td:nth-child(9) {
+    min-width: 9.3rem;
+}
+
+
+/* Cambiar el azul por defceto de los form */
+
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #013927 !important;
+    box-shadow: 0 0 0 0.2rem rgba(1, 57, 39, 0.5) !important;
+    outline: none !important;
+}
+
+
+
+
+.form-control:hover,
+.form-select:hover {
+    border-color: #013927;
+}
+
+/* responsive */
 
