@@ -17,5 +17,6 @@
             "priority": 4
         }
     ],
-    "livePreview.defaultPreviewPath": "/HTML/footer.html"
+    "livePreview.defaultPreviewPath": "/HTML/footer.html",
+    "liveServer.settings.port": 5501
 }
