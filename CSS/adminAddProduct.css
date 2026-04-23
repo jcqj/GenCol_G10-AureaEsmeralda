@@ -8,6 +8,10 @@ body {
     /* position: fixed; */
 }
 
+.container-agregar {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+}
 .miniSidebar {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(0.6rem);
