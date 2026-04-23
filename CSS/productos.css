@@ -1,12 +1,15 @@
 :root {
-    --bg: #d9e2ec;
+    /* --bg: #D8D2C4; */
+    --bg: #F5F5F5;
+    /* --bg: #FDF5E6; */
     --surface: #1C1C1C;
     --border: #39885D;
-    --accent: #8db594;
-    --accent2: #0F5C4D;
-    --text: #e8e8f0;
+    --accent: #013927;
+    --text: #000000;
     --muted: #6b6b80;
     --card-bg: #1C1C1C;
+    --border-card: #d4af37;
+    
 }
 
 *,
@@ -16,16 +19,17 @@ box-sizing: border-box;
 }
 
 body {
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  min-height: 100vh;
 }
 
 
 
 /* ── Product Card ── */
 .product-card {
-  background: #ffffff;
+  background: #F8F8FF;
   border: 3px solid var(--border);
   border-radius: 19px;
   overflow: hidden;
@@ -40,14 +44,14 @@ body {
 
 .product-card:hover {
   transform: translateY(-6px);
-  border-color: var(--accent2);
+  border-color: var(--border-card);
   box-shadow: 0 12px 36px rgba(200, 255, 0, 0.08);
 }
 
 /* Image area */
 .card-img-wrap {
   position: relative;
-  background: #ffffff;
+  background: #F8F8FF;
   padding: 1rem;
   display: flex;
   align-items: center;
@@ -70,8 +74,8 @@ body {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
-  background: var(--accent2);
-  color: #ffffff;
+  background: #ffffff;
+  color: #000000;
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -115,7 +119,7 @@ body {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--accent2);
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -163,8 +167,8 @@ body {
 
 .btn-cart {
   flex: 1;
-  background: var(--accent2);
-  color: #000;
+  background: var(--accent);
+  color: #ffffff;
   border: none;
   border-radius: 6px;
   font-weight: 700;

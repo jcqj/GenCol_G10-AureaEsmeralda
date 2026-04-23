@@ -60,9 +60,9 @@ function crearCard(producto) {
     const imagenHTML = producto.imagen
         ? `<img src="${producto.imagen}" alt="${producto.nombre}">`
         : `<div class="card-img-top bg-secondary d-flex align-items-center 
-                       justify-content-center" style="height:180px;">
-               <i class="bi bi-image text-white fs-1"></i>
-           </div>`;
+                    justify-content-center" style="height:180px;">
+                <i class="bi bi-image text-white fs-1"></i>
+            </div>`;
 
     // # 5. Formatear fecha
     const fechaFormateada = new Date(producto.fecha + 'T00:00:00')
