@@ -1,39 +1,26 @@
 
-import { getTodosProductos , getProductos} from "./services/productService.js";
+import { getTodosProductos } from "./services/productService.js";
 let cartCount = 0;
 
-function addToCart(producto) {
+function addToCart(idProducto) {
     cartCount++;
+    const productos = getTodosProductos();
+    const producto = productos.find(p => p.id == idProducto);
+
+    if (!producto) return;
+
     //  Leer carrito actual
     const carritoActual = JSON.parse(localStorage.getItem('aurea_cart')) || [];
 
     //  Verificar si ya existe el producto
-    const existe = carritoActual.find(p => p.id === producto.id);
+    const existe = carritoActual.find(p => p.id == idProducto);
 
     if (existe) {
         // Si existe suma la cantidad
         existe.cantidad = (existe.cantidad || 1) + 1;
     } else {
         // Si no existe, agrega cantidad + 1
-        carritoActual.push({ ...producto, cantidad: 1 });
-    }
-
-    //  Guardar en localStorage
-    localStorage.setItem('aurea_cart', JSON.stringify(carritoActual));
-
-    const productos = getTodosProductos();
-    const producto = productos.find(p => p.id == idProducto);
-
-    if (!producto) return;
-
-    let carrito = getProductos();
-
-    const existe = carrito.find(item => item.id == idProducto);
-
-    if (existe) {
-        existe.cantidad++;
-    } else {
-        carrito.push({
+        carritoActual.push({
             id: producto.id,
             nombre: producto.nombre,
             precio: producto.precio,
@@ -42,7 +29,8 @@ function addToCart(producto) {
         });
     }
 
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    //  Guardar en localStorage
+    localStorage.setItem('aurea_cart', JSON.stringify(carritoActual));
     mostrarToast();
 }
 
