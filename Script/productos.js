@@ -27,22 +27,9 @@ function addToCart(idProducto) {
     }
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
-
-    actualizarContadorCarrito();
     mostrarToast();
 }
-function actualizarContadorCarrito() {
 
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-    const total = carrito.reduce((acc, item) => acc + item.cantidad, 0);
-
-    const badge = document.getElementById("cart-count");
-
-    if (badge) {
-        badge.textContent = total;
-    }
-}
 function mostrarToast() {
     const toastEl = document.getElementById("cart-toast");
     const toast = new bootstrap.Toast(toastEl);
@@ -169,7 +156,6 @@ function borrarCard(id, card) {
 // ===== LLAMAR AL CARGAR LA PÁGINA =====
 document.addEventListener("DOMContentLoaded", () => {
     cargarProductos();
-    actualizarContadorCarrito();
 });
 
 document.getElementById("contenedorCards")
