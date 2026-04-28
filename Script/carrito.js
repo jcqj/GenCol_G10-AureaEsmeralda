@@ -59,50 +59,112 @@ document.addEventListener("click", function (e) {
     }
 });
 
+
+
+// ===== VERIFICAR CARRITO VACÍO =====
+function verificarCarritoVacio() {
+    const cards = document.querySelectorAll(".product-card");
+    const mensajeVacio = document.getElementById("carrito-vacio");
+    const btnPago = document.getElementById("btn-pago");
+
+    if (cards.length === 0) {
+        mensajeVacio?.classList.remove("d-none");
+        if (btnPago) btnPago.disabled = true;
+    } else {
+        mensajeVacio?.classList.add("d-none");
+        if (btnPago) btnPago.disabled = false;
+    }
+}
+
 // ===== RESUMEN DE COMPRA =====
 function cargarResumen() {
     const productos = document.querySelectorAll(".product-card");
     let subtotal = 0;
-    let descuento = 0;
+    let descuentoTotal = 0;
     let envio = 5000;
 
     productos.forEach(producto => {
-        // Limpia el precio: quita $, puntos y comas
-        const precioTexto = producto.querySelector(".fs-5")?.innerText
-            .replace("$", "")
-            .replace(/\./g, "")
-            .replace(",", "")
-            .trim();
-
-        const precio = parseFloat(precioTexto) || 0;
+        // Obtener precio numérico del data-attribute (más confiable)
+        const precioNumerico = parseFloat(producto.getAttribute('data-precio')) || 0;
         const cantidad = parseInt(producto.querySelector(".quantity-input")?.value) || 1;
-        subtotal += precio * cantidad;
 
-        // Obtener precio viejo del data-attribute
-        const precioViejo = parseFloat(producto.getAttribute('data-precio-antiguo') || '0');
-        
-        // Calcular descuento: precio viejo - precio nuevo
-        if (precioViejo > precio) {
-            descuento += (precioViejo - precio) * cantidad;
+        subtotal += precioNumerico * cantidad;
+
+        // Obtener precio original del data-attribute
+        const precioOriginal = parseFloat(producto.getAttribute('data-precio-original') || '0');
+
+        // Calcular descuento solo si hay precio original válido mayor al precio actual
+        if (precioOriginal > precioNumerico) {
+            descuentoTotal += (precioOriginal - precioNumerico) * cantidad;
         }
     });
 
-    // si esta vacio 
-    if (productos.length === 0) { envio = 0; descuento = 0; }
-    if (descuento > subtotal) descuento = subtotal;
+    // Si está vacío, resetear valores
+    if (productos.length === 0) { 
+        envio = 0; 
+        descuentoTotal = 0; 
+    }
 
-    const total = subtotal - descuento + envio;
+    // Seguridad: el descuento no puede ser mayor que el subtotal
+    if (descuentoTotal > subtotal) descuentoTotal = subtotal;
+
+    const total = subtotal - descuentoTotal + envio;
+
+    // Formato COP consistente
     const fmt = { style: "currency", currency: "COP", minimumFractionDigits: 2, maximumFractionDigits: 2 };
 
     document.getElementById("subtotal").innerText = subtotal.toLocaleString("es-CO", fmt);
-    document.getElementById("descuento").innerText = descuento.toLocaleString("es-CO", fmt);
+    document.getElementById("descuento").innerText = descuentoTotal.toLocaleString("es-CO", fmt);
     document.getElementById("envio").innerText = envio.toLocaleString("es-CO", fmt);
     document.getElementById("total").innerText = total.toLocaleString("es-CO", fmt);
 }
 
-// ===== CARGAR PRODUCTOS DESDE LOCALSTORAGE =====
+// function cargarResumen() {
+//     const productos = document.querySelectorAll(".product-card");
+//     let subtotal = 0;
+//     let descuento = 0;
+//     let envio = 5000;
+
+//     productos.forEach(producto => {
+//         // Limpia el precio: quita $, puntos y comas
+//         const precioTexto = producto.querySelector(".fs-5")?.innerText
+//             .replace("$", "")
+//             .replace(/\./g, "")
+//             .replace(",", "")
+//             .trim();
+
+//         const precio = parseFloat(precioTexto) || 0;
+//         const cantidad = parseInt(producto.querySelector(".quantity-input")?.value) || 1;
+//         subtotal += precio * cantidad;
+
+//         // Obtener precio viejo del data-attribute
+//         // const precioViejo = parseFloat(producto.getAttribute('data-precio-antiguo') || '0');
+        
+//         // Calcular descuento: precio viejo - precio nuevo
+//         // if (precioViejo > precio) {
+//         //     descuento += (precioViejo - precio) * cantidad;
+//         // }
+//     });
+
+//     // si esta vacio 
+//     if (productos.length === 0) { envio = 0; descuento = 0; }
+//     if (descuento > subtotal) descuento = subtotal;
+
+//     const total = subtotal - descuento + envio;
+//     const fmt = { style: "currency", currency: "COP", minimumFractionDigits: 2, maximumFractionDigits: 2 };
+
+//     document.getElementById("subtotal").innerText = subtotal.toLocaleString("es-CO", fmt);
+//     document.getElementById("descuento").innerText = descuento.toLocaleString("es-CO", fmt);
+//     document.getElementById("envio").innerText = envio.toLocaleString("es-CO", fmt);
+//     document.getElementById("total").innerText = total.toLocaleString("es-CO", fmt);
+// }
+
 function cargarProductos() {
     const datos = localStorage.getItem('aurea_cart');
+
+    // Siempre verificar estado del carrito (vacío o no)
+    verificarCarritoVacio();
+
     if (!datos) return;
 
     const productosEnCarrito = JSON.parse(datos);
@@ -111,12 +173,15 @@ function cargarProductos() {
     productosEnCarrito.forEach(producto => crearCard(producto));
     updateTotalItems();
     cargarResumen();
+    verificarCarritoVacio();
 }
 
 // ===== CREAR CARD DINÁMICA =====
 function crearCard(producto) {
     const contenedor = document.getElementById('contenedorCardss');
+    if(!contenedor)  return;
 
+    
     const imgHTML = producto.imagen
         ? `<img src="${producto.imagen}" alt="${producto.nombre}" style="width:80px;height:80px;object-fit:cover;border-radius:8px;">`
         : `<div style="width:80px;height:80px;background:#eee;border-radius:8px;display:flex;align-items:center;justify-content:center;">
