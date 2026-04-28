@@ -27,7 +27,7 @@ function saveCartToStorage() {
     });
 }
 
-//localstorage guardar
+// localstorage guardar
 function cargaDeCarrito() {
     const savedCart = localStorage.getItem("aurea_cart");
     if (savedCart) {
@@ -41,7 +41,7 @@ function cargaDeCarrito() {
     localStorage.setItem("aurea_cart", JSON.stringify(cartData));
 }
 
-//parte superior
+// parte superior
 function updateTotalItems() {
     const allInputs = document.querySelectorAll(".quantity-input");
     const badge = document.getElementById("cart-count");
@@ -100,44 +100,44 @@ function cargarResumen() {
         const cantidad = parseInt(producto.querySelector(".quantity-input").value);
 
         subtotal += precio * cantidad;
-    
-    const badgeDescuento = producto.querySelector(".discount-badge");
-    if (badgeDescuento) {
 
-        const porcentajeTexto = badgeDescuento.innerText
-            .replace("% DESC", "")
-            .trim();
+        const badgeDescuento = producto.querySelector(".discount-badge");
+        if (badgeDescuento) {
 
-        const porcentaje = parseFloat(porcentajeTexto);
+            const porcentajeTexto = badgeDescuento.innerText
+                .replace("% DESC", "")
+                .trim();
 
-        // Calcular descuento 
-        const descuentoProducto =
-            (precio * cantidad) * (porcentaje / 100);
+            const porcentaje = parseFloat(porcentajeTexto);
 
-        descuento += descuentoProducto;
+            // Calcular descuento 
+            const descuentoProducto =
+                (precio * cantidad) * (porcentaje / 100);
+
+            descuento += descuentoProducto;
+        }
+    });
+
+
+    // si esta vacio
+    if (productos.length === 0) {
+        envio = 0;
+        descuento = 0;
     }
-});
 
 
-// si esta vacio
-if (productos.length === 0) {
-    envio = 0;
-    descuento = 0;
-}
+    if (descuento > subtotal) {
+        descuento = subtotal;
+    }
 
+    const total = subtotal - descuento + envio;
 
-if (descuento > subtotal) {
-    descuento = subtotal;
-}
-
-const total = subtotal - descuento + envio;
-
-// formato para dos decimales, el descuento de 20% daba solo decimal 2 y se veia raro
-const formatoMoneda = {
+    // formato para dos decimales, el descuento de 20% daba solo decimal 2 y se veia raro
+    const formatoMoneda = {
         style: "currency",
         currency: "COP",
-        minimumFractionDigits: 2, 
-        maximumFractionDigits: 2
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 1
     };
 
 
@@ -181,71 +181,67 @@ function crearCard(producto) {
     const card = document.createElement("div");
     // card.classList.add('col'); // columna de Bootstrap
     card.className = "product-card p-3 shadow-sm card";
-    card.setAttribute("data-id", producto.id);
+    card.setAttribute("data-iid", producto.id);
 
     // # 3. Badge de disponibilidad
-    const badgeColor = {
-        Disponible: "success",
-        "No disponible": "danger",
-        Agotado: "warning",
-    };
-    const color = badgeColor[producto.disponibilidad] || "secondary";
+    // const badgeColor = {
+    //     Disponible: "success",
+    //     "No disponible": "danger",
+    //     Agotado: "warning",
+    // };
+    // const color = badgeColor[producto.disponibilidad] || "secondary";
 
     // # 4. Seleccionamos IMAGEN en caso de NO HABER, MUESTRA ESPACIO.
     const imagenHTML = producto.imagen
-        ? `<img src="${producto.imagen}" alt="${producto.nombre}">`
+        ? `<img src="${producto.imagen}" alt="${producto.nombre}" class="product-image">`
         : `<div class="card-img-top bg-secondary d-flex align-items-center 
                     justify-content-center" style="height:180px;">
                 <i class="bi bi-image text-white fs-1"></i>
             </div>`;
 
     // # 5. Formatear fecha
-    const fechaFormateada = new Date(
-        producto.fecha + "T00:00:00",
-    ).toLocaleDateString("es-ES", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-    });
+    // const fechaFormateada = new Date(
+    //     producto.fecha + "T00:00:00",
+    // ).toLocaleDateString("es-ES", {
+    //     day: "2-digit",
+    //     month: "short",
+    //     year: "numeric",
+    // });
 
     // # 6. Rellenar la card con HTML
 
     card.innerHTML = `
-        <div class="product-card p-3 shadow-sm card">
-                        <div class="row align-items-center g-3">
-                            <div class="col-4 col-md-2 text-center">
-                                ${imagenHTML}
-                            </div>
-                            <div class="col-8 col-md-4">
-                                <!-- ========== CATEGORIA PRODUCTO ========== -->
-                                <span class="product-category"><i class="bi bi-tag"></i>${producto.categoria}</span>
-                                <!-- ========== NOMBRE PRODUCTO ========== -->
-                                <h5 class="product-name">${producto.nombre}</h5>
-                                <!-- ========== DESCRIPCION PRODUCTO ========== -->
-                                <p class="product-desc">${producto.descripcion || "Sin descripción"}</p>
-                                <h6 class="mb-1 fw-bold">Smart Watch S7</h6>
-                                <p class="text-muted small mb-0">Plata | 44mm</p>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="quantity-control">
-                                    <button class="btn btn-sm btn-light border-0" onclick="changeQty(this, -1)">
-                                        <i class="bi bi-dash"></i>
-                                    </button>
-                                    <input type="number" class="quantity-input" value="1" min="1" readonly>
-                                    <button class="btn change-qty btn-sm btn-light border-0" onclick="changeQty(this, 1)">
-                                        <i class="bi bi-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-4 col-md-2 text-end text-md-start">
-                                <span class="price-current">$${producto.precio}</span>
-                                <span class="fw-bold fs-5">$29.99</span>
-                            </div>
-                            <div class="col-2 col-md-1 text-end">
-                                <button class="remove-btn"><i class="bi bi-trash3-fill"></i></button>
-                            </div>
-                        </div>
-                    </div>
+    <div class="row align-items-center g-3">
+        <div class="col-4 col-md-2 text-center">
+            ${imagenHTML}
+        </div>
+        <div class="col-8 col-md-4">
+            <!-- ========== CATEGORIA PRODUCTO ========== -->
+            <span class="product-category"><i class="bi bi-tag"></i>${producto.categoria}</span>
+            <!-- ========== NOMBRE PRODUCTO ========== -->
+            <h5 class="product-name">${producto.nombre}</h5>
+            <!-- ========== DESCRIPCION PRODUCTO ========== -->
+            <p class="product-desc">${producto.descripcion || "Sin descripción"}</p>
+            <h6 class="mb-1 fw-bold">Smart Watch S7</h6>
+            <p class="text-muted small mb-0">Plata | 44mm</p>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="quantity-control">
+                <button class="btn btn-sm btn-light border-0" onclick="changeQty(this, -1)"><i class="bi bi-dash"></i>
+                </button>
+                <input type="number" class="quantity-input" value="1" min="1" readonly>
+                <button class="btn change-qty btn-sm btn-light border-0" onclick="changeQty(this, 1)"><i class="bi bi-plus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="col-4 col-md-2 text-end text-md-start">
+            <span class="price-current">$${producto.precio}</span>
+            <span class="fw-bold fs-5">$${producto.precio}</span>
+        </div>
+        <div class="col-2 col-md-1 text-end">
+            <button class="remove-btn"><i class="bi bi-trash3-fill"></i></button>
+        </div>
+    </div>
     `;
 
     // 7. Agregar la card al contenedor
@@ -255,10 +251,10 @@ function crearCard(producto) {
     contenedor.append(card);
 
     // 8. Asignar evento borrar a la card
-    card.querySelector(".btn-borrar-card").addEventListener("click", function () {
-        const id = parseInt(this.getAttribute("data-id"));
-        borrarCard(id, card);
-    });
+    // card.querySelector(".btn-borrar-card").addEventListener("click", function () {
+    //     const id = parseInt(this.getAttribute("data-idd"));
+    //     borrarCard(id, card);
+    // });
 }
 
 // ===== LLAMAR AL CARGAR LA PÁGINA =====
