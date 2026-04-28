@@ -188,14 +188,19 @@ function crearCard(producto) {
                <i class="bi bi-image" style="font-size:24px;color:#aaa"></i>
            </div>`;
 
-    // Formateamos el precio para que tenga el mismo formato que los hardcodeados
-    const precioFormateado = parseFloat(String(producto.precio).replace(/\./g,'').replace(',','.'))
-        .toLocaleString('es-CO');
+
+const precio = Number(producto.precio) || 0;
+
+const precioFormateado = precio.toLocaleString("es-CO", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+});
 
     const card = document.createElement('div');
     card.className = 'product-card p-3 shadow-sm card';
-    card.setAttribute('data-id', producto.id);
-    card.setAttribute('data-precio-antiguo', '4820000'); // Precio viejo hardcodeado
+    card.setAttribute("data-id", producto.id);
+    card.setAttribute("data-precio", producto.precio);
+    card.setAttribute("data-precio-original",producto.precio);
 
 
     card.innerHTML = `

@@ -22,11 +22,13 @@ function addToCart(idProducto) {
     } else {
         // Si no existe, agrega cantidad + 1
         carritoActual.push({
-            id: producto.id,
-            nombre: producto.nombre,
-            precio: producto.precio,
-            imagen: producto.imagen,
-            quantity: 1
+        id: producto.id,
+        nombre: producto.nombre,
+        precio: Number(producto.precio),
+        imagen: producto.imagen,
+        cantidad: 1,
+        categoria: producto.categoria,
+        descripcion: producto.descripcion
         });
     }
 
