@@ -1,22 +1,27 @@
 
-import { getTodosProductos, getProductos, getProductosCarrito } from "./services/productService.js";
+import { getTodosProductos } from "./services/productService.js";
 let cartCount = 0;
 
 function addToCart(idProducto) {
+    cartCount++;
     const productos = getTodosProductos();
 
     const producto = productos.find(p => p.id == idProducto);
 
     if (!producto) return;
 
-    let carrito = getProductosCarrito();
+    //  Leer carrito actual
+    const carritoActual = JSON.parse(localStorage.getItem('aurea_cart')) || [];
 
-    const existe = carrito.find(item => item.id == idProducto);
+    //  Verificar si ya existe el producto
+    const existe = carritoActual.find(p => p.id == idProducto);
 
     if (existe) {
-        existe.quantity += 1;
+        // Si existe suma la cantidad
+        existe.cantidad = (existe.cantidad || 1) + 1;
     } else {
-        carrito.push({
+        // Si no existe, agrega cantidad + 1
+        carritoActual.push({
             id: producto.id,
             nombre: producto.nombre,
             precio: producto.precio,
@@ -25,8 +30,8 @@ function addToCart(idProducto) {
         });
     }
 
-    localStorage.setItem("aurea_cart", JSON.stringify(carrito));
-
+    //  Guardar en localStorage
+    localStorage.setItem('aurea_cart', JSON.stringify(carritoActual));
     mostrarToast();
 }
 
