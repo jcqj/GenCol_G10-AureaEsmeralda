@@ -1,8 +1,23 @@
 let cartCount = 0;
 
-function addToCart() {
+function addToCart(producto) {
     cartCount++;
+    //  Leer carrito actual
+    const carritoActual = JSON.parse(localStorage.getItem('aurea_cart')) || [];
 
+    //  Verificar si ya existe el producto
+    const existe = carritoActual.find(p => p.id === producto.id);
+
+    if (existe) {
+        // Si existe suma la cantidad
+        existe.cantidad = (existe.cantidad || 1) + 1;
+    } else {
+        // Si no existe, agrega cantidad + 1
+        carritoActual.push({ ...producto, cantidad: 1 });
+    }
+
+    //  Guardar en localStorage
+    localStorage.setItem('aurea_cart', JSON.stringify(carritoActual));
 
     const toastEl = document.getElementById('cart-toast');
     const toast = new bootstrap.Toast(toastEl);
@@ -101,7 +116,8 @@ function crearCard(producto) {
                 </div>
             </div>
             <div class="card-footer d-flex gap-2">
-                <button class="btn-cart" data-id="${producto.id}"  onclick="addToCart()" >
+               
+                <button class="btn-cart" data-id="${producto.id}" onclick='addToCart(${JSON.stringify(producto)})'>
                     <i class="bi bi-bag-plus me-1"></i>Agregar
                 </button>
 
