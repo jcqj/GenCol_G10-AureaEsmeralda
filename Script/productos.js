@@ -1,32 +1,32 @@
 
-import { getTodosProductos , getProductos} from "./services/productService.js";
+import { getTodosProductos, getProductos, getProductosCarrito } from "./services/productService.js";
 let cartCount = 0;
 
-
 function addToCart(idProducto) {
-
     const productos = getTodosProductos();
+
     const producto = productos.find(p => p.id == idProducto);
 
     if (!producto) return;
 
-    let carrito = getProductos();
+    let carrito = getProductosCarrito();
 
     const existe = carrito.find(item => item.id == idProducto);
 
     if (existe) {
-        existe.cantidad++;
+        existe.quantity += 1;
     } else {
         carrito.push({
             id: producto.id,
             nombre: producto.nombre,
             precio: producto.precio,
             imagen: producto.imagen,
-            cantidad: 1
+            quantity: 1
         });
     }
 
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    localStorage.setItem("aurea_cart", JSON.stringify(carrito));
+
     mostrarToast();
 }
 
@@ -159,13 +159,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById("contenedorCards")
-.addEventListener("click", function (e) {
+    .addEventListener("click", function (e) {
 
-    const boton = e.target.closest(".btn-cart");
+        const boton = e.target.closest(".btn-cart");
 
-    if (!boton) return;
+        if (!boton) return;
 
-    const id = boton.dataset.id;
+        const id = Number(boton.dataset.id);
 
-    addToCart(id);
-});
+        addToCart(id);
+    });
