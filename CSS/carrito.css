@@ -1,92 +1,180 @@
+:root {
+    --bs-body-bg: #f4f7f6;
+    --verde-elegante: #013927;
+    --verde-hover: #025239;
+}
 
-        :root {
-            --bs-body-bg: #f4f7f6;
-        }
+.cart-wrapper {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    padding: 40px 0;
+}
 
-        .cart-wrapper {
-            padding: 40px 0;
-        }
+.product-card {
+    background: white;
+    border-radius: 15px;
+    border: none;
+    transition: all 0.3s ease;
+}
 
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            border: none;
-            transition: all 0.3s ease;
-        }
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05) !important;
+}
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important;
-        }
+.product-image {
+    width: 100%;
+    max-width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 12px;
+}
 
-        .product-image {
-            width: 100%;
-            max-width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 12px;
-        }
+.cart-subtitle {
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #6c757d;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-left: 4px solid var(--verde-elegante);
+    padding-left: 12px;
+    margin-bottom: 2rem;
+}
 
-        .quantity-control {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 5px;
-            display: inline-flex;
-            align-items: center;
-        }
+.btn-continue {
+    color: var(--verde-elegante);
+    border: 2px solid var(--verde-elegante);
+    font-weight: 600;
+    border-radius: 15px; 
+    padding: 10px 24px;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    letter-spacing: 0.4px;
+    display: inline-flex;
+    align-items: center;
+}
 
-        .quantity-input {
-            width: 45px;
-            border: none;
-            background: transparent;
-            text-align: center;
-            font-weight: bold;
-        }
+.btn-continue:hover {
+    background-color: var(--verde-elegante);
+    color: white;
+    transform: translateX(-4px);
+    box-shadow: 0 8px 18px rgba(1, 57, 39, 0.15);
+}
 
-        /* Eliminar flechas del input number */
-        .quantity-input::-webkit-outer-spin-button,
-        .quantity-input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+.quantity-control {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+}
 
-        .summary-card {
-            background: white;
-            border-radius: 15px;
-            border: none;
-            position: sticky;
-            top: 20px;
-        }
+.quantity-input {
+    width: 45px;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-weight: bold;
+}
 
-        .checkout-btn {
-            padding: 12px;
-            font-weight: 600;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #6366f1, #4f46e5);
-            border: none;
-        }
+/* Eliminar flechas del input number */
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
-        .checkout-btn:hover {
-            background: linear-gradient(135deg, #4f46e5, #4338ca);
-        }
+.summary-card {
+    background: white;
+    border-radius: 15px;
+    border: none;
+    position: sticky;
+    top: 20px;
+    margin-top: 54px;
+}
 
-        .remove-btn {
-            color: #ef4444;
-            transition: color 0.2s;
-            background: none;
-            border: none;
-            padding: 5px;
-        }
+/* Botón cangear cupon */
+.input-group .btn-dark {
+    background: linear-gradient(135deg, #013927, #025c3f);
+    border: none;
+    font-weight: 600;
+    border-radius: 0 10px 10px 0;
+    padding: 10px 22px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.4px;
+}
 
-        .remove-btn:hover {
-            color: #b91c1c;
-        }
+.input-group .btn-dark:hover {
+    background: linear-gradient(135deg, #025c3f, #013927);
+    box-shadow: 0 6px 14px rgba(1, 57, 39, 0.15);
+}
 
-        .discount-badge {
-            background: #ecfdf5;
-            color: #059669;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
+
+.input-group .form-control:focus {
+    border-color: var(--verde-elegante);
+    box-shadow: 0 0 0 0.15rem rgba(1, 57, 39, 0.1);
+}
+
+.checkout-btn {
+    padding: 14px;
+    font-weight: 700;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #013927, #025c3f);
+    border: none;
+    color: white;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(1, 57, 39, 0.12);
+}
+
+.checkout-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(1, 57, 39, 0.18);
+    background: linear-gradient(135deg, #025c3f, #013927);
+}
+
+
+.remove-btn {
+    color: #ef4444;
+    transition: color 0.2s;
+    background: none;
+    border: none;
+    padding: 5px;
+}
+
+.remove-btn:hover {
+    color: #b91c1c;
+}
+
+.discount-badge {
+    background: #ecfdf5;
+    color: #059669;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+
+
+
+/*  contendor productos y efecto hover en las Cards de productos */
+#contenedorCardss .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+}
+
+#contenedorCardss .card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+#contenedorCardss {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}

@@ -2,8 +2,24 @@
 import { getTodosProductos , getProductos} from "./services/productService.js";
 let cartCount = 0;
 
+function addToCart(producto) {
+    cartCount++;
+    //  Leer carrito actual
+    const carritoActual = JSON.parse(localStorage.getItem('aurea_cart')) || [];
 
-function addToCart(idProducto) {
+    //  Verificar si ya existe el producto
+    const existe = carritoActual.find(p => p.id === producto.id);
+
+    if (existe) {
+        // Si existe suma la cantidad
+        existe.cantidad = (existe.cantidad || 1) + 1;
+    } else {
+        // Si no existe, agrega cantidad + 1
+        carritoActual.push({ ...producto, cantidad: 1 });
+    }
+
+    //  Guardar en localStorage
+    localStorage.setItem('aurea_cart', JSON.stringify(carritoActual));
 
     const productos = getTodosProductos();
     const producto = productos.find(p => p.id == idProducto);
