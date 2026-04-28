@@ -1,0 +1,92 @@
+
+        :root {
+            --bs-body-bg: #f4f7f6;
+        }
+
+        .cart-wrapper {
+            padding: 40px 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important;
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .quantity-control {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 5px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .quantity-input {
+            width: 45px;
+            border: none;
+            background: transparent;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Eliminar flechas del input number */
+        .quantity-input::-webkit-outer-spin-button,
+        .quantity-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 15px;
+            border: none;
+            position: sticky;
+            top: 20px;
+        }
+
+        .checkout-btn {
+            padding: 12px;
+            font-weight: 600;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            border: none;
+        }
+
+        .checkout-btn:hover {
+            background: linear-gradient(135deg, #4f46e5, #4338ca);
+        }
+
+        .remove-btn {
+            color: #ef4444;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .remove-btn:hover {
+            color: #b91c1c;
+        }
+
+        .discount-badge {
+            background: #ecfdf5;
+            color: #059669;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
