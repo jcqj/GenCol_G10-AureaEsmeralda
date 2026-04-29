@@ -1,40 +1,55 @@
+
+import { getTodosProductos } from "./services/productService.js";
 let cartCount = 0;
 
-function addToCart() {
+function addToCart(idProducto) {
     cartCount++;
+    const productos = getTodosProductos();
 
+    const producto = productos.find(p => p.id == idProducto);
 
-    const toastEl = document.getElementById('cart-toast');
+    if (!producto) return;
+
+    //  Leer carrito actual
+    const carritoActual = JSON.parse(localStorage.getItem('aurea_cart')) || [];
+
+    //  Verificar si ya existe el producto
+    const existe = carritoActual.find(p => p.id == idProducto);
+
+    if (existe) {
+        // Si existe suma la cantidad
+        existe.cantidad = (existe.cantidad || 1) + 1;
+    } else {
+        // Si no existe, agrega cantidad + 1
+        carritoActual.push({
+        id: producto.id,
+        nombre: producto.nombre,
+        precio: Number(producto.precio),
+        imagen: producto.imagen,
+        cantidad: 1,
+        categoria: producto.categoria,
+        descripcion: producto.descripcion
+        });
+    }
+
+    //  Guardar en localStorage
+    localStorage.setItem('aurea_cart', JSON.stringify(carritoActual));
+    mostrarToast();
+}
+
+function mostrarToast() {
+    const toastEl = document.getElementById("cart-toast");
     const toast = new bootstrap.Toast(toastEl);
     toast.show();
 }
 
-// ! --------------------------------------------
-
-
-// ! CARGAR IMAGEN
-
 function cargarProductos() {
-    // # 1. Obtener datos del localStorage
-    const datos = localStorage.getItem('productos_admin'); //? Traermos infor de KEY 'productos_admin'
-    // #    Devuelve un STRING o null si no hay nada
+    const productos = getTodosProductos();
 
-    // # 2. Verificar si hay datos
-    if (!datos) {
-        console.log('No hay productos guardados'); //# Sí es vacio, devuelve que no hay producto
-        return;
-    }
-
-    // # 3. Convertir el STRING a un array de objetos
-    const productosGuardados = JSON.parse(datos);
-    // #    Operación inversa a JSON.stringify
-
-    // # 4. Por cada producto, crear una card
-    productosGuardados.forEach(producto => {
+    productos.forEach(producto => {
         crearCard(producto);
     });
 }
-
 
 
 // ! CREAR CARD DE UN PRODUCTO 
@@ -101,11 +116,11 @@ function crearCard(producto) {
                 </div>
             </div>
             <div class="card-footer d-flex gap-2">
-                <button class="btn-cart" data-id="${producto.id}"  onclick="addToCart()" >
-                    <i class="bi bi-bag-plus me-1"></i>Agregar
-                </button>
+                    <button class="btn-cart" data-id="${producto.id}">
+                        <i class="bi bi-bag-plus me-1"></i>Agregar
+                    </button>
 
-                <button class="btn-wishlist btn-sm  btn-borrar-card data-id="${producto.id}"><i class="bi bi-heart"></i></button>
+                <button class="btn-wishlist btn-sm  btn-borrar-card" data-id="${producto.id}"><i class="bi bi-heart"></i></button>
             </div>
         </div>
     `;
@@ -131,13 +146,13 @@ function borrarCard(id, card) {
     if (confirm('¿Seguro que deseas borrar este producto?')) {
 
         // 1. Obtener productos actuales
-        let productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
+        let productosGuardados = JSON.parse(localStorage.getItem('productos_admin')) || [];
 
         // 2. Filtrar (quitar el borrado)
         productosGuardados = productosGuardados.filter(p => p.id !== id);
 
         // 3. Guardar el array actualizado
-        localStorage.setItem('productos', JSON.stringify(productosGuardados));
+        localStorage.setItem('productos_admin', JSON.stringify(productosGuardados));
 
         // 4. Quitar la card del HTML
         card.remove();
@@ -146,6 +161,18 @@ function borrarCard(id, card) {
 
 
 // ===== LLAMAR AL CARGAR LA PÁGINA =====
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     cargarProductos();
 });
+
+document.getElementById("contenedorCards")
+    .addEventListener("click", function (e) {
+
+        const boton = e.target.closest(".btn-cart");
+
+        if (!boton) return;
+
+        const id = Number(boton.dataset.id);
+
+        addToCart(id);
+    });
