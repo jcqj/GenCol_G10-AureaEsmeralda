@@ -88,7 +88,7 @@ document.getElementById('formProducto').addEventListener('submit', function (e) 
         nombre,
         categoria,
         descripcion,
-        precio: parseFloat(precio).toFixed(2),
+        precio: parseFloat(precio), //.toFixed(2),
         cantidad: parseInt(cantidad) || 0,
         disponibilidad,
         fecha,
