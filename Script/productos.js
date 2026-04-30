@@ -53,7 +53,7 @@ function cargarProductos() {
 
 
 // ! CREAR CARD DE UN PRODUCTO 
-function crearCard(producto) {
+export function crearCard(producto) {
     // # 1. Seleccionar el contenedor donde van las cards
     const contenedor = document.getElementById('contenedorCards');
 
@@ -120,7 +120,9 @@ function crearCard(producto) {
                         <i class="bi bi-bag-plus me-1"></i>Agregar
                     </button>
 
-                <button class="btn-wishlist btn-sm  btn-borrar-card" data-id="${producto.id}"><i class="bi bi-heart"></i></button>
+                <button class="btn-wishlist btn-sm btn-favorito" data-id="${producto.id}">
+   <i class="bi ${esFavorito(producto.id) ? 'bi-heart-fill text-danger' : 'bi-heart'}"></i>
+</button>
             </div>
         </div>
     `;
@@ -131,12 +133,12 @@ function crearCard(producto) {
     // ! PREPREND para añadir al inicio
     contenedor.prepend(card);
 
-
+/*
     // 8. Asignar evento borrar a la card
     card.querySelector('.btn-borrar-card').addEventListener('click', function () {
         const id = parseInt(this.getAttribute('data-id'));
         borrarCard(id, card);
-    });
+    });*/
 }
 
 
@@ -158,6 +160,35 @@ function borrarCard(id, card) {
         card.remove();
     }
 }
+// ======FUNCIONES PARA FAVORITOS======
+function obtenerFavoritos() {
+    return JSON.parse(localStorage.getItem("aurea_favoritos")) || [];
+}
+
+function guardarFavoritos(lista) {
+    localStorage.setItem("aurea_favoritos", JSON.stringify(lista));
+}
+
+function esFavorito(idProducto) {
+    const favoritos = obtenerFavoritos();
+    return favoritos.includes(idProducto);
+}
+
+function toggleFavorito(idProducto, boton) {
+    let favoritos = obtenerFavoritos();
+
+    if (favoritos.includes(idProducto)) {
+        favoritos = favoritos.filter(id => id !== idProducto);
+
+        boton.innerHTML = `<i class="bi bi-heart"></i>`;
+    } else {
+        favoritos.push(idProducto);
+
+        boton.innerHTML = `<i class="bi bi-heart-fill text-danger"></i>`;
+    }
+
+    guardarFavoritos(favoritos);
+}
 
 
 // ===== LLAMAR AL CARGAR LA PÁGINA =====
@@ -166,13 +197,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById("contenedorCards")
-    .addEventListener("click", function (e) {
+.addEventListener("click", function (e) {
 
-        const boton = e.target.closest(".btn-cart");
+    const botonFav = e.target.closest(".btn-favorito");
 
-        if (!boton) return;
+    if (!botonFav) return;
 
-        const id = Number(boton.dataset.id);
+    const id = Number(botonFav.dataset.id);
 
-        addToCart(id);
+    toggleFavorito(id, botonFav);
     });

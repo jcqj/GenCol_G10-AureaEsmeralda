@@ -124,12 +124,19 @@ function validateEmail() {
     }
 
 
-    // Verify not already registered
-    const usuarios = JSON.parse(localStorage.getItem('aureaEsmeraldaUsers') || '[]');
-    if (usuarios.some(u => u.email === v)) {
-        showError(inputEmail, 'err-email', 'err-email-text', 'Este correo ya está registrado.');
-        return false;
+    let usuarios = [];
+    try {
+        usuarios = JSON.parse(localStorage.getItem('aureaEsmeraldaUsers') || '[]');
+    }catch (e) {
+        console.warn("Datos locales corruptos. Se reiniciará la base de datos local.");
+        localStorage.removeItem('aureaEsmeraldaUsers');
     }
+    
+    // const usuarios = JSON.parse(localStorage.getItem('aureaEsmeraldaUsers') || '[]');
+    // if (usuarios.some(u => u.email === v)) {
+    //     showError(inputEmail, 'err-email', 'err-email-text', 'Este correo ya está registrado.');
+    //     return false;
+    // }
     clearError(inputEmail, 'err-email');
     return true;
 }
@@ -177,11 +184,13 @@ function validateTerminos() {
 }
 
 // ── Live validation on blur ────────────────────────────
+
 inputNombre.addEventListener('blur', validateNombre);
 inputTel.addEventListener('blur', validateTelefono);
 inputEmail.addEventListener('blur', validateEmail);
 inputPass.addEventListener('blur', validatePassword);
 inputConfirm.addEventListener('blur', validateConfirm);
+chkTerminos.addEventListener('change', validateTerminos); // soluciona bug con efecto blur en checkbox
 
 // re-check confirm when password changes
 inputPass.addEventListener('input', () => {
@@ -199,8 +208,16 @@ function simpleHash(str) {
 
 // ── Build user object & save ───────────────────────────
 function buildUserObject() {
+    const generarId = () => {
+        if (window.crypto && crypto.randomUUID) {
+            return crypto.randomUUID();
+        }
+        return 'id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9); //en caso de que no funcione el id lo que se hace es como crear el token seguro
+        // pasa a base 36 letra y numeros, y el substrac elimina los dos primeros caractres y cuanta los siguientes 9
+    };
+    
     return {
-        id: crypto.randomUUID(),
+        id: generarId(),
         nombreCompleto: inputNombre.value.trim(),
         telefono: {
             prefijo: prefijo.value,

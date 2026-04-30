@@ -1,185 +1,228 @@
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
-
-:root{
-    --color-primario:#013927;
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --gold-dim: #7a6230;
+  --emerald: #1a3d2b;
+  --emerald-deep: #0d2118;
+  --bg: #080f0b;
+  --surface: #111a14;
+  --surface-2: #182210;
+  --text: #f0ead8;
+  --text-muted: #9b9280;
+  --error: #d4624a;
+  --success: #4caf80;
+  --border: rgba(201, 168, 76, 0.22);
+  --border-focus: rgba(201, 168, 76, 0.7);
+  --radius: 6px;
 }
+
 .navbar {
-    padding: 0.75rem 1.5rem;
-    background-color: var(--color-primario) !important;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    position: relative;
+  padding: 0.75rem 1.5rem;
+  background: var(--bg);
+  
+  /* background-color: var(--color-primario) !important; */
+  /* background: var(--bg); */
+  /* font-family: "Quicksand", sans-serif; */
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  z-index: 10;
 }
+
+.navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 15% 20%, rgba(26, 61, 43, .55) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 40% at 85% 80%, rgba(201, 168, 76, .08) 0%, transparent 65%),
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(13, 33, 24, .6) 0%, transparent 80%);
+  z-index: 0;
+  opacity: 04;
+  pointer-events: none;
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:  url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 0;
+}
+
 
 .miLogo {
-    color: #ffff;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 1.25rem;
-    font-weight: 600;
+  color: #ffff;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .miLogo:hover {
-    color: #bc9c22;
+  color: #bc9c22;
 }
 
 .miLogo img:first-child {
-    width: 3.5rem;
-    height: auto;
-    padding: 0.3rem 0.8rem;
+  width: 3.5rem;
+  height: auto;
+  padding: 0.3rem 0.8rem;
 }
 
-.nombreMarca{
-    height: 2.3rem;
-    width: auto;
-    padding: 0;
-    display: block;
-    flex-shrink: 0;
+.nombreMarca {
+  height: 2.3rem;
+  width: auto;
+  padding: 0;
+  display: block;
+  flex-shrink: 0;
 }
-
 
 .navbar .nav-link {
-    color: #ffff;
-    transition: all 0.3s ease;
+  color: #ffff;
+  transition: all 0.3s ease;
 }
 
 .navbar .nav-link:hover {
-    color: #bc9c22;
+  color: #bc9c22;
 }
 
 .dropdown-item {
-    color: white;
+  color: white;
 }
 
 .dropdown-item:focus,
 .dropdown-item:active {
-    background-color: #013927;
-    color: #bc9c22;
+  background-color: #013927;
+  color: #bc9c22;
 }
 
 .dropdown-item:hover {
-    color: #bc9c22;
-    background-color: #013927;
+  color: #bc9c22;
+  background-color: #013927;
 }
 
-
 .dropdown-menu {
-    color: #ffff;
-    background-color: #013927;
-    border-color: #bc9c22;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    display: block;
-    visibility: hidden;
+  color: #ffff;
+  background-color: #013927;
+  border-color: #bc9c22;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  display: block;
+  visibility: hidden;
+  position: absolute;
+  z-index: 9999;
 }
 
 .dropdown:hover .dropdown-menu {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
 }
 
 .botones button {
-    background-color: #39885d;
-    border-color: #39885d;
-    width: 2.5rem;
-    height: 2.5rem;
-    padding: 0;
-    font-size: 1rem;
-    transition: transform 0.3s ease;
+  background-color: #39885d;
+  border-color: #39885d;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
 }
 
 .botones button:hover {
-    transform: scale(1.2);
-    background-color: #bc9c22;
-    border-color: #bc9c22;
-    color: #ffff;
+  transform: scale(1.2);
+  background-color: #bc9c22;
+  border-color: #bc9c22;
+  color: #ffff;
 }
 
 .navbar-toggler-icon {
-    filter: invert(1);
+  filter: invert(1);
 }
 
 .navbar-toggler {
-    border: 2px solid white !important;
+  border: 2px solid white !important;
 }
 
 .navbar-toggler:focus {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 /* Estilo para el contador del carrito */
 #cart-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: #bc9c22;
-    color: #025c3f;
-    font-size: 12px;
-    font-weight: bold; 
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: none; /* El JS lo activa */
-    align-items: center;
-    justify-content: center;
-    border: 2px solid white;
-    z-index: 1000;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #bc9c22;
+  color: #025c3f;
+  font-size: 12px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: none;
+  /* El JS lo activa */
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  z-index: 1000;
 }
-
 
 /* Arreglo de responsive en navabr */
 
 /*  RESPONSIVE NAVBAR */
 @media (max-width: 991px) {
+  /* Reducir padding*/
+  .navbar-collapse {
+    padding: 0.5rem 0;
+  }
 
-    /* Reducir padding*/
-    .navbar-collapse {
-        padding: 0.5rem 0;
-    }
+  /* Nav-links compactos */
+  .navbar .nav-link {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.95rem;
+  }
 
-    /* Nav-links compactos */
-    .navbar .nav-link {
-        padding: 0.4rem 0.5rem;
-        font-size: 0.95rem;
-    }
+  /* Eliminar el gap grande del menu en mobile */
+  .navbar-nav.gap-3 {
+    gap: 0 !important;
+  }
 
-    /* Eliminar el gap grande del menu en mobile */
-    .navbar-nav.gap-3 {
-        gap: 0 !important;
-    }
+  /* Dropdown: quitar el efecto hover y mostrar al click en mobile */
+  .dropdown-menu {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    transition: none !important;
+    display: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.15) !important;
+    border-radius: 0.5rem;
+    margin-left: 1rem;
+    margin-bottom: 0.25rem;
+  }
 
-    /* Dropdown: quitar el efecto hover y mostrar al click en mobile */
-    .dropdown-menu {
-        opacity: 1 !important;
-        transform: none !important;
-        visibility: visible !important;
-        transition: none !important;
-        display: none;
-        border: none;
-        padding: 0;
-        margin: 0;
-        background-color: rgba(0, 0, 0, 0.15) !important;
-        border-radius: 0.5rem;
-        margin-left: 1rem;
-        margin-bottom: 0.25rem;
-    }
+  /* Dropdown  más ajustado espacios */
+  .dropdown-menu .dropdown-item {
+    padding: 0.3rem 1rem;
+    font-size: 0.88rem;
+  }
 
-    /* Dropdown  más ajustado espacios */
-    .dropdown-menu .dropdown-item {
-        padding: 0.3rem 1rem;
-        font-size: 0.88rem;
-    }
-
-    /* Separar los botones del menu y no choque  */
-    .botones {
-        padding: 0.5rem 0;
-        border-top: 1px solid rgba(255,255,255,0.15);
-        margin-top: 0.5rem;
-    }
+  /* Separar los botones del menu y no choque  */
+  .botones {
+    padding: 0.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin-top: 0.5rem;
+  }
 }
