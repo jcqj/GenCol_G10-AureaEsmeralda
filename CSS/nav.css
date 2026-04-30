@@ -112,3 +112,74 @@ html {
 .navbar-toggler:focus {
     box-shadow: none;
 }
+
+/* Estilo para el contador del carrito */
+#cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #bc9c22;
+    color: #025c3f;
+    font-size: 12px;
+    font-weight: bold; 
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: none; /* El JS lo activa */
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    z-index: 1000;
+}
+
+
+/* Arreglo de responsive en navabr */
+
+/*  RESPONSIVE NAVBAR */
+@media (max-width: 991px) {
+
+    /* Reducir padding*/
+    .navbar-collapse {
+        padding: 0.5rem 0;
+    }
+
+    /* Nav-links compactos */
+    .navbar .nav-link {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    /* Eliminar el gap grande del menu en mobile */
+    .navbar-nav.gap-3 {
+        gap: 0 !important;
+    }
+
+    /* Dropdown: quitar el efecto hover y mostrar al click en mobile */
+    .dropdown-menu {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        transition: none !important;
+        display: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        background-color: rgba(0, 0, 0, 0.15) !important;
+        border-radius: 0.5rem;
+        margin-left: 1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    /* Dropdown  más ajustado espacios */
+    .dropdown-menu .dropdown-item {
+        padding: 0.3rem 1rem;
+        font-size: 0.88rem;
+    }
+
+    /* Separar los botones del menu y no choque  */
+    .botones {
+        padding: 0.5rem 0;
+        border-top: 1px solid rgba(255,255,255,0.15);
+        margin-top: 0.5rem;
+    }
+}

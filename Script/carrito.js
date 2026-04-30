@@ -36,26 +36,78 @@ function updateTotalItems() {
 }
 
 // ===== ELIMINAR CARD =====
+// document.addEventListener("click", function (e) {
+//     if (e.target.closest(".remove-btn")) {
+//         const card = e.target.closest(".product-card");
+
+//         // Si es una card dinámica, también borramos del localStorage
+//         const id = card.getAttribute('data-id');
+//         if (id) {
+//             let carritoActual = JSON.parse(localStorage.getItem('aurea_cart')) || [];
+//             carritoActual = carritoActual.filter(p => String(p.id) !== String(id));
+//             localStorage.setItem('aurea_cart', JSON.stringify(carritoActual));
+//         }
+
+//         card.style.opacity = "0";
+//         card.style.transform = "scale(0.9)";
+//         card.style.transition = "all 0.3s ease";
+//         setTimeout(() => {
+//             card.remove();
+//             updateTotalItems();
+//             cargarResumen();
+//         }, 300);
+//     }
+// });
+
+//  guardar temporalmente card e id de card
+let itemAEliminar = null;
+
+// ===== ELIMINAR CARD CON CONFIRMACIÓN =====
 document.addEventListener("click", function (e) {
     if (e.target.closest(".remove-btn")) {
         const card = e.target.closest(".product-card");
-
-        // Si es una card dinámica, también borramos del localStorage
         const id = card.getAttribute('data-id');
-        if (id) {
-            let carritoActual = JSON.parse(localStorage.getItem('aurea_cart')) || [];
-            carritoActual = carritoActual.filter(p => String(p.id) !== String(id));
-            localStorage.setItem('aurea_cart', JSON.stringify(carritoActual));
-        }
 
+        
+        itemAEliminar = { card, id };
+
+        
+        const myModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+        myModal.show();
+    }
+});
+
+// boton para eliminar dentro del modal 
+document.getElementById('confirmDeleteBtn').addEventListener('click', function () {
+    if (itemAEliminar) {
+        const { card, id } = itemAEliminar;
+
+        // Borrar del localstorage
+        let carritoActual = JSON.parse(localStorage.getItem('aurea_cart')) || [];
+        carritoActual = carritoActual.filter(p => String(p.id) !== String(id));
+        localStorage.setItem('aurea_cart', JSON.stringify(carritoActual));
+
+        // Animacion 
         card.style.opacity = "0";
         card.style.transform = "scale(0.9)";
         card.style.transition = "all 0.3s ease";
+
         setTimeout(() => {
             card.remove();
             updateTotalItems();
             cargarResumen();
+            verificarCarritoVacio();
+
+            // avisar al badge del navbar
+            window.dispatchEvent(new Event('cart-updated'));
         }, 300);
+
+        // termianr el modal
+        const modalElement = document.getElementById('confirmDeleteModal');
+        const modalInstance = bootstrap.Modal.getInstance(modalElement);
+        modalInstance.hide();
+
+        itemAEliminar = null; // Limpiar referencia
     }
 });
 
@@ -100,9 +152,9 @@ function cargarResumen() {
     });
 
     // Si está vacío, resetear valores
-    if (productos.length === 0) { 
-        envio = 0; 
-        descuentoTotal = 0; 
+    if (productos.length === 0) {
+        envio = 0;
+        descuentoTotal = 0;
     }
 
     // Seguridad: el descuento no puede ser mayor que el subtotal
@@ -139,7 +191,7 @@ function cargarResumen() {
 
 //         // Obtener precio viejo del data-attribute
 //         // const precioViejo = parseFloat(producto.getAttribute('data-precio-antiguo') || '0');
-        
+
 //         // Calcular descuento: precio viejo - precio nuevo
 //         // if (precioViejo > precio) {
 //         //     descuento += (precioViejo - precio) * cantidad;
@@ -179,9 +231,9 @@ function cargarProductos() {
 // ===== CREAR CARD DINÁMICA =====
 function crearCard(producto) {
     const contenedor = document.getElementById('contenedorCardss');
-    if(!contenedor)  return;
+    if (!contenedor) return;
 
-    
+
     const imgHTML = producto.imagen
         ? `<img src="${producto.imagen}" alt="${producto.nombre}" style="width:80px;height:80px;object-fit:cover;border-radius:8px;">`
         : `<div style="width:80px;height:80px;background:#eee;border-radius:8px;display:flex;align-items:center;justify-content:center;">
@@ -189,18 +241,18 @@ function crearCard(producto) {
            </div>`;
 
 
-const precio = Number(producto.precio) || 0;
+    const precio = Number(producto.precio) || 0;
 
-const precioFormateado = precio.toLocaleString("es-CO", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-});
+    const precioFormateado = precio.toLocaleString("es-CO", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
 
     const card = document.createElement('div');
     card.className = 'product-card p-3 shadow-sm card';
     card.setAttribute("data-id", producto.id);
     card.setAttribute("data-precio", producto.precio);
-    card.setAttribute("data-precio-original",producto.precio);
+    card.setAttribute("data-precio-original", producto.precio);
 
 
     card.innerHTML = `

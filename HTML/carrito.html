@@ -28,7 +28,7 @@
                     <div class="container py-4 border rounded-4 shadow-sm bg-white">
                         <p class="cart-subtitle mb-4">Productos agregados a tu carrito</p>
                         <!-- #Aquí aparecen las cards -->
-                        <div >
+                        <div>
                             <!-- ! Las cards se generan con JS -->
 
                             <div id="contenedorCardss" class="d-flex flex-column gap-3"></div>
@@ -85,11 +85,61 @@
                     </div>
                 </div>
             </div>
+
+            <div class="seccionRecomendaciones mt-5">
+                <h3 class="fw-bold mb-4">También te puede interesar</h3>
+                <div class="rec-outer position-relative">
+                    <div class="scrollCarrusel d-flex gap-3 overflow-x-auto pb-3" id="recomendacion"
+                        style="scroll-behavior: smooth;">
+                    </div>
+
+                    <button
+                        class="btn btn-dark position-absolute top-50 start-0 translate-middle-y rounded-circle shadow"
+                        id="btnAtras" style="z-index: 10;">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button class="btn btn-dark position-absolute top-50 end-0 translate-middle-y rounded-circle shadow"
+                        id="btnSiguiente" style="z-index: 10;">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+    <!-- Modal para eliminar cosas del carrito  -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">¿Eliminar producto?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-muted">
+                    ¿Estás seguro que deseas quitar este producto de tu lista de compras?
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn px-4" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn px-4 btn-confirmar-eliminar" id="confirmDeleteBtn">Eliminar</button>
+                </div>
+            </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../Script/carrito.js"></script>
+    <script type="module" src="../Script/recomendaciones.js"></script>
 
 </body>
 

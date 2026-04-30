@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width", initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
@@ -84,9 +84,14 @@
                         <i class="fa-solid fa-heart"></i>
                     </button>
 
-                    <a href="./carrito.html"><button onclick="" class="btn btn-success rounded-circle">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </button></a>
+                    <a href="./carrito.html">
+                        <button class="btn btn-success rounded-circle position-relative">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span id="cart-badge" class="cart-badge-style">0</span>
+                        </button>
+                    </a>
+
+                    <script type="module" src="../JS/nav.js"></script>
 
                 </div>
             </div>
@@ -94,4 +99,7 @@
     </nav>
 
 
+<script src="../Script/script.js"></script>
+
+</body>
 </html>
