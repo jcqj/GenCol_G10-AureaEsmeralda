@@ -19,7 +19,7 @@ box-sizing: border-box;
 }
 
 body {
-  background: var(--bg);
+  /* background: var(--bg); */
   color: var(--text);
   font-family: "DM Sans", sans-serif;
   min-height: 100vh;
