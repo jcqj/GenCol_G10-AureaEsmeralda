@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro — Aurea Esmeralda</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="../CSS/registro.css">
+</head>
+
+<body>
+
+    <!-- Toast container -->
+    <div class="toast-container-custom" id="toastContainer"></div>
+    
+
+    <div class="page-wrapper">
+        <div class="btn-back">
+            <a href="./productos.html"><button type="button" class="btn btn-outline-secondary" ><i class="bi bi-arrow-left"></i> Volver a Comercio
+            </button></a>
+        </div>
+
+        <!-- Brand -->
+        <div class="brand">
+            <div class="brand-emblem">
+                <img src="../assets/logo-dorado-registro.svg" alt="Aurea Esmeralda Logo" class="logo" />
+            </div>
+            <div class="brand-name">Aurea Esmeralda</div>
+            <div class="brand-tagline">Joyería de Alta calidad</div>
+            <div class="divider"><span>✦</span></div>
+        </div>
+
+        
+
+        <!-- Card -->
+        <div class="register-card">
+            <!-- <button type="button" class="btn btn-outline-secondary" onclick="window.history.back()">
+                    <i class="bi bi-arrow-left"></i> Volver, volver , voooolveeeer.... a tus labios otra vez
+                </button> -->
+            <div class="card-title">Crear cuenta</div>
+            <div class="card-subtitle">Únete a nuestra Pagina web, y aprovecha los beneficios que tenemos para ti</div>
+
+            <form id="registerForm" novalidate autocomplete="off">
+
+
+                <!-- Nombre completo -->
+                <div class="form-group" id="group-nombre">
+                    <label for="nombre">Nombre completo</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="nombre" name="nombre" class="form-control"
+                            placeholder="Ej. Julian Valderrama Gomez" maxlength="80" />
+                        <i class="bi bi-person icon"></i>
+                    </div>
+                    <div class="error-msg" id="err-nombre">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span id="err-nombre-text"></span>
+                    </div>
+                </div>
+
+                <!-- Teléfono -->
+                <div class="form-group" id="group-telefono">
+                    <label for="telefono">Número de teléfono</label>
+                    <div class="phone-group">
+                        <select class="prefix-select" id="prefijo" name="prefijo" title="Prefijo de país">
+                            <option value="+57">🇨🇴 +57</option>
+                            <option value="+1">🇺🇸 +1</option>
+                            <option value="+34">🇪🇸 +34</option>
+                            <option value="+52">🇲🇽 +52</option>
+                            <option value="+54">🇦🇷 +54</option>
+                            <option value="+56">🇨🇱 +56</option>
+                            <option value="+51">🇵🇪 +51</option>
+                            <option value="+55">🇧🇷 +55</option>
+                        </select>
+                        <div class="input-wrapper">
+                            <input type="tel" id="telefono" name="telefono" class="form-control"
+                                placeholder="300 123 4567" maxlength="15" inputmode="numeric" />
+                            <i class="bi bi-telephone icon"></i>
+                        </div>
+                    </div>
+                    <div class="error-msg" id="err-telefono">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span id="err-telefono-text"></span>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group" id="group-email">
+                    <label for="email">Correo electrónico <span
+                            style="color:var(--gold-dim);font-size:.6rem;">(usuario)</span></label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" name="email" class="form-control"
+                            placeholder="correo@ejemplo.com" maxlength="100" />
+                        <i class="bi bi-envelope icon"></i>
+                    </div>
+                    <div class="error-msg" id="err-email">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span id="err-email-text"></span>
+                    </div>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="form-group" id="group-password">
+                    <label for="password">Contraseña</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" name="password" class="form-control"
+                            placeholder="Mín. 8 caracteres" maxlength="64" />
+                        <i class="bi bi-lock icon"></i>
+                        <button type="button" class="toggle-pass" id="togglePass" title="Mostrar/ocultar contraseña"
+                            aria-label="Toggle password">
+                            <i class="bi bi-eye-slash" id="eyeIcon"></i>
+                        </button>
+                    </div>
+                    <!-- Strength -->
+                    <div class="strength-wrap" id="strengthWrap" style="display:none;">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                        <div class="strength-label" id="strengthLabel"></div>
+                    </div>
+                    <div class="error-msg" id="err-password">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span id="err-password-text"></span>
+                    </div>
+                </div>
+
+                <!-- Confirmar contraseña -->
+                <div class="form-group" id="group-confirm">
+                    <label for="confirm">Confirmar contraseña</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="confirm" name="confirm" class="form-control"
+                            placeholder="Repite tu contraseña" maxlength="64" />
+                        <i class="bi bi-shield-lock icon"></i>
+                        <button type="button" class="toggle-pass" id="toggleConfirm" title="Mostrar/ocultar"
+                            aria-label="Toggle confirm">
+                            <i class="bi bi-eye-slash" id="eyeIcon2"></i>
+                        </button>
+                    </div>
+                    <div class="error-msg" id="err-confirm">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span id="err-confirm-text"></span>
+                    </div>
+                </div>
+
+                <!-- Términos -->
+                <div class="terms-check">
+                    <input type="checkbox" id="terminos" name="terminos" />
+                    <label for="terminos">
+                        Acepto los <a href="#">términos y condiciones</a> y la
+                        <a href="#">política de privacidad</a> de Aurea Esmeralda.
+                    </label>
+                </div>
+                <div class="error-msg" id="err-terminos" style="margin-top:.4rem;">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    <span>Debes aceptar los términos para continuar.</span>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn-register" id="submitBtn">
+                    Crear mi cuenta
+                </button>
+
+            </form>
+
+            <!-- Footer link -->
+            <div class="form-footer">
+                ¿Ya tienes cuenta? <a href="#">Iniciar sesión</a>
+            </div>
+        </div>
+<!-- 
+        <div class="btn-back">
+            <button type="button" class="btn btn-outline-secondary" onclick="window.history.back()"><i class="bi bi-arrow-left"></i> Volver a Comercio
+            </button>
+        </div> -->
+
+    </div><!-- end page-wrapper -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../Script/registro.js"></script>
+</body>
+
+</html>
