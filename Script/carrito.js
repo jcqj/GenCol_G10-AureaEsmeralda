@@ -166,7 +166,7 @@ function cargarResumen() {
     const fmt = { style: "currency", currency: "COP", minimumFractionDigits: 2, maximumFractionDigits: 2 };
 
     document.getElementById("subtotal").innerText = subtotal.toLocaleString("es-CO", fmt);
-    document.getElementById("descuento").innerText = descuentoTotal.toLocaleString("es-CO", fmt);
+    // document.getElementById("descuento").innerText = descuentoTotal.toLocaleString("es-CO", fmt);
     document.getElementById("envio").innerText = envio.toLocaleString("es-CO", fmt);
     document.getElementById("total").innerText = total.toLocaleString("es-CO", fmt);
 }

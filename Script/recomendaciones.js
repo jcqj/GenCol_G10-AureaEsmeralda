@@ -12,19 +12,32 @@ function cargarSugerencias() {
     // Filtrar productos que no están en carrito
     const sugeridos = todosLosProductos.filter(p =>
         !carritoActual.some(item => item.id === p.id)
-    ).slice(0, 6); 
+    ).slice(0, 6);
 
     contenedor.innerHTML = ""; // Limpiar
 
     sugeridos.forEach(producto => {
+        // Imagen principal
+        const imgPrincipal = producto.imagen
+            ? `<img class="rec-img-principal" src="${producto.imagen}" alt="${producto.nombre}">`
+            : `<div class="rec-img-placeholder"><i class="bi bi-image"></i></div>`;
+
+        // Imagen secundaria — solo si existe
+        const imgSecundaria = producto.imagenSecundaria
+            ? `<img class="rec-img-secundaria" src="${producto.imagenSecundaria}" alt="${producto.nombre} - vista 2">`
+            : '';
+
         const item = document.createElement('div');
         item.className = 'elementos';
         item.innerHTML = `
-            <div class="card h-100 shadow-sm border-0">
-                <img src="${producto.imagen}" class="card-img-top rec-card-img" alt="${producto.nombre}">
+            <div class="card h-100 shadow-sm border-0 rec-card">
+                <div class="rec-img-wrap">
+                    ${imgPrincipal}
+                    ${imgSecundaria}
+                </div>
                 <div class="card-body p-3">
                     <h6 class="fw-bold mb-1">${producto.nombre}</h6>
-                    <p class="text-primary fw-bold mb-3">$${Number(producto.precio).toLocaleString("es-CO")}</p>
+                    <p class="text-primary fw-bold mb-3">$${Number(producto.precioFinal ?? producto.precio).toLocaleString("es-CO")}</p>
                     <button class="btn btn-outline-dark btn-sm w-100 btn-agregar" data-id="${producto.id}">
                         <i class="bi bi-bag-plus me-1"></i> Agregar
                     </button>
@@ -33,7 +46,7 @@ function cargarSugerencias() {
         `;
         contenedor.appendChild(item);
     });
-    
+
     configurarNavegacion();
 
     // Eventos de botones agregar
@@ -52,7 +65,7 @@ function configurarNavegacion() {
     let intervalo;
 
     if (btnSiguiente && btnAtras && contenedor) {
-        
+
         const iniciarScroll = (velocidad) => {
             clearInterval(intervalo);
             intervalo = setInterval(() => {
@@ -101,19 +114,19 @@ function agregarDesdeSugerencia(id) {
     if (!carrito.some(item => item.id == id)) {
         carrito.push({ ...producto, cantidad: 1 });
         localStorage.setItem('aurea_cart', JSON.stringify(carrito));
-        
+
         // 1. Actualiza el Badge del Navbar
         window.dispatchEvent(new Event('cart-updated'));
 
         // Actualiza la lista del carrito sin recargar y limpiamos para que no se dupliquen
-      
+
         const contenedor = document.getElementById('contenedorCardss');
         if (contenedor) {
             contenedor.innerHTML = ""; // Limpiamos la lista vieja
             cargarProductos();       //  el nuevo item
         }
-        
+
         // Actualizala lista de sugerencias
-        cargarSugerencias(); 
+        cargarSugerencias();
     }
 }

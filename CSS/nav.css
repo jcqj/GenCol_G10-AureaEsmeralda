@@ -57,6 +57,16 @@ html {
     z-index: 0;
 }
 
+.navbar::before,
+.navbar::after {
+  z-index: -1; 
+}
+
+
+.navbar-content {
+  position: relative;
+  z-index: 1;
+}
 
 .miLogo {
   color: #ffff;
@@ -68,7 +78,7 @@ html {
 }
 
 .miLogo:hover {
-  color: #bc9c22;
+  color: var(--gold-light);
 }
 
 .miLogo img:first-child {
@@ -91,7 +101,7 @@ html {
 }
 
 .navbar .nav-link:hover {
-  color: #bc9c22;
+  color: var(--gold-light);
 }
 
 .dropdown-item {
@@ -100,26 +110,49 @@ html {
 
 .dropdown-item:focus,
 .dropdown-item:active {
-  background-color: #013927;
-  color: #bc9c22;
+  background-color: transparent;
+  color: var(--gold-light);
 }
 
 .dropdown-item:hover {
-  color: #bc9c22;
-  background-color: #013927;
+  color: var(--gold-light);
+  background-color: transparent;
 }
 
 .dropdown-menu {
   color: #ffff;
-  background-color: #013927;
-  border-color: #bc9c22;
+  background: var(--bg);
+  border-color: var(--gold-light);
   opacity: 0;
   transform: translateY(10px);
   transition: all 0.3s ease;
   display: block;
   visibility: hidden;
-  position: absolute;
-  z-index: 9999;
+  position: relative;
+  z-index: 1;
+}
+
+.dropdown-menu::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Efecto tal cual */
+    background: radial-gradient(ellipse 60% 50% at 15% 20%, rgba(26, 61, 43, .55) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 40% at 85% 80%, rgba(201, 168, 76, .08) 0%, transparent 65%),
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(13, 33, 24, .6) 0%, transparent 80%);
+    z-index: -1; /* Lo envía detrás del texto */
+    opacity: 0.4; /* Ajusté el "04" a "0.4" para que sea válido en CSS */
+    pointer-events: none;
+}
+
+.dropdown-menu::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: -1; 
 }
 
 .dropdown:hover .dropdown-menu {
@@ -129,8 +162,8 @@ html {
 }
 
 .botones button {
-  background-color: #39885d;
-  border-color: #39885d;
+  background-color: transparent;
+  border-color: var(--emerald);
   width: 2.5rem;
   height: 2.5rem;
   padding: 0;
@@ -140,8 +173,8 @@ html {
 
 .botones button:hover {
   transform: scale(1.2);
-  background-color: #bc9c22;
-  border-color: #bc9c22;
+  background-color: var(--gold);
+  border-color: var(--gold-light);
   color: #ffff;
 }
 
@@ -162,7 +195,7 @@ html {
   position: absolute;
   top: -5px;
   right: -5px;
-  background-color: #bc9c22;
+  background-color: var(--gold-light);
   color: #025c3f;
   font-size: 12px;
   font-weight: bold;

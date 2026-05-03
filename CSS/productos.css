@@ -1,7 +1,5 @@
 :root {
-    /* --bg: #D8D2C4; */
     --bg: #F5F5F5;
-    /* --bg: #FDF5E6; */
     --surface: #1C1C1C;
     --border: #39885D;
     --accent: #013927;
@@ -9,198 +7,245 @@
     --muted: #6b6b80;
     --card-bg: #1C1C1C;
     --border-card: #d4af37;
-    
+    --gold-light: #e8c97a;
+    --emerald: #1a3d2b;
+    --emerald-deep: #0d2118;
+
 }
+
+
 
 *,
 *::before,
 *::after {
-box-sizing: border-box;
+    box-sizing: border-box;
 }
+
+
 
 body {
-  /* background: var(--bg); */
-  color: var(--text);
-  font-family: "DM Sans", sans-serif;
-  min-height: 100vh;
+    background: #ebeae9be;
+    font-family: "DM Sans", sans-serif;
+    min-height: 100vh;
 }
-
-
 
 /* ── Product Card ── */
 .product-card {
-  background: #F8F8FF;
-  border: 3px solid var(--border);
-  border-radius: 19px;
-  overflow: hidden;
-  transition:
-    transform 0.25s,
-    border-color 0.25s,
-    box-shadow 0.25s;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+    background: #F8F8FF;
+    border: 3px solid var(--emerald);
+    border-radius: 15px;
+    padding: 24px;
+    overflow: hidden;
+    transition:
+        transform 0.25s,
+        border-color 0.25s,
+        box-shadow 0.25s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--border-card);
-  box-shadow: 0 12px 36px rgba(200, 255, 0, 0.08);
+    transform: translateY(-6px);
+    border-color: var(--border-card);
+    box-shadow: 0 12px 36px rgba(200, 255, 0, 0.08);
 }
 
-/* Image area */
+/* ── Image area ── */
 .card-img-wrap {
-  position: relative;
-  background: #F8F8FF;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
-  overflow: hidden;
+    position: relative;
+    background: #F8F8FF;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    overflow: hidden;
 }
 
-.card-img-wrap img {
-  max-height: 150px;
-  object-fit: contain;
-  transition: transform 0.2s;
+/* Contenedor de las dos imágenes */
+.img-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.product-card:hover .card-img-wrap img {
-  transform: scale(1.02);
+/* Imagen principal */
+.img-principal {
+    max-height: 150px;
+    object-fit: contain;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    position: relative;
+    z-index: 1;
 }
 
+/* Imagen secundaria — oculta por defecto, se posiciona encima */
+.img-secundaria {
+    max-height: 150px;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    z-index: 2;
+}
+
+/* Al hacer hover sobre la card, intercambia imágenes */
+.product-card:hover .img-principal {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.product-card:hover .img-secundaria {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.02);
+}
+
+/* Si no hay imagen secundaria, la principal sigue el comportamiento original */
+.product-card:hover .img-container:not(:has(.img-secundaria)) .img-principal {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+/* Badges en cards */
 .card-badge {
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  background: #ffffff;
-  color: #000000;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.2em 0.6em;
-  border-radius: 40px;
+    position: absolute;
+    top: 0.75rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2em 0.6em;
+    border-radius: 40px;
+    z-index: 3;
 }
 
-.card-badge.sale {
-  background: #ef4444;
-}
-
+/* Best Seller — esquina  izquierda */
 .card-badge.best {
-  background: #0F5C4D;
-  color: #000;
+    left: 0.75rem;
+    background: #0F5C4D;
+    color: #fff;
 }
 
-/* Rating */
+/* Descuento — esquina derecha */
+.card-badge.sale {
+    right: 0.75rem;
+    background: var(--emerald-deep);
+    color: #fff;
+}
+
+/* ── Rating ── */
 .rating {
-  color: #facc15;
-  font-size: 1.5rem;
-  letter-spacing: 0.02em;
+    color: #facc15;
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
 }
 
 .rating span {
-  color: var(--muted);
-  font-size: 0.78rem;
-  margin-left: 0.3rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+    margin-left: 0.3rem;
 }
 
-/* Card body */
+/* ── Card body ── */
 .product-card .card-body {
-  flex: 1;
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+    flex: 1;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .product-category {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-  font-weight: 600;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 600;
 }
 
 .product-name {
-  font-family: "Playfair Display", serif;
-  font-size: 1.05rem;
-  line-height: 1.35;
-  color: var(--text);
-  margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    color: var(--emerald);
+    margin: 0;
 }
 
 .product-desc {
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.5;
-  flex: 1;
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+    flex: 1;
 }
 
 .price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 0.6rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
 }
 
 .price-current {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--emerald);
 }
 
 .price-old {
-  font-size: 0.85rem;
-  color: var(--muted);
-  text-decoration: line-through;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: line-through;
 }
 
-/* Card footer */
+/* ── Card footer ── */
 .product-card .card-footer {
-  background: transparent;
-  border-top: 1px solid var(--border);
-  padding: 1rem 1.25rem;
-  display: flex;
-  gap: 0.6rem;
+    background: transparent;
+    border-top: 1px solid var(--border);
+    padding: 1rem 1.25rem;
+    display: flex;
+    gap: 0.6rem;
 }
 
 .btn-cart {
-  flex: 1;
-  background: var(--accent);
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  font-weight: 700;
-  font-size: 0.85rem;
-  padding: 0.55rem;
-  transition:
-    opacity 0.2s,
-    transform 0.1s;
+    flex: 1;
+    background: linear-gradient(135deg, #013927, #025c3f);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.55rem;
+    transition: opacity 0.2s, transform 0.1s;
+    cursor: pointer;
 }
 
 .btn-cart:hover {
-  opacity: 0.85;
-  transform: scale(0.98);
+    /* opacity: 0.85; */
+    background: linear-gradient(135deg, #025c3f, #013927);
+    transform: scale(0.98);
 }
 
 .btn-wishlist {
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--muted);
-  padding: 0.55rem 0.75rem;
-  transition:
-    color 0.2s,
-    border-color 0.2s;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--muted);
+    padding: 0.55rem 0.75rem;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: pointer;
 }
 
 .btn-wishlist:hover {
-  color: #ef4444;
-  border-color: #ef4444;
+    color: #ef4444;
+    border-color: #ef4444;
 }
 
-/* Toast */
+/* ── Toast ── */
 .toast-container {
     z-index: 9999;
 }

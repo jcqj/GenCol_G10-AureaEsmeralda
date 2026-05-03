@@ -115,13 +115,13 @@ label {
 }
 
 
-#info,
+/* #info,
 #mapa .col-md-6 {
   margin-left: auto;
   margin-right: 0;
   max-width: 25rem;
   width: 100%;
-}
+} */
 
 .infoCard {
   width: 100%;
@@ -130,6 +130,15 @@ label {
 
 
 /* Preguntas frecuentes estilo en el acordion */
+
+.accordion-button.collapsed {
+  background-color: #1a3d2b;
+  color: white;
+}
+
+.accordion-button.collapsed::after {
+  filter: invert(1);
+}
 
 .accordion-button:not(.collapsed) {
   background-color: #025c3f; 
@@ -161,7 +170,7 @@ label {
   font-size: 3.12rem;
   color: rgb(188, 156, 34);
   display: block;        
-  margin-bottom: 1.56rem;
+  margin-bottom: 0.5rem;
 }
 
 
@@ -169,6 +178,9 @@ label {
   text-align: center;
 }
 
+.mapaCol {
+  margin-top: -40px;
+}
 
 .mapaCol .card {
   max-width: 100%;
@@ -177,7 +189,7 @@ label {
 
 .mapaContenedor {
   width: 100%;
-  margin-top: 1.25rem;
+  margin-top: 0rem;
   border-color: #013927;
   border-radius: 0.75rem;
   overflow: hidden;
@@ -186,4 +198,18 @@ label {
 .mapaContenedor iframe {
   width: 100%;
   display: block;
+}
+
+@media (min-width: 768px) {
+  .mapaCol {
+    margin-top: -40px; 
+  }
+}
+
+/* En pantallas pequeñas, para que no se pierda el icono */
+@media (max-width: 767px) {
+  .mapaCol {
+    margin-top: 20px !important; 
+    margin-bottom: 20px;
+  }
 }

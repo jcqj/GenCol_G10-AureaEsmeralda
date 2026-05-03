@@ -1,27 +1,21 @@
 <!DOCTYPE html>
-<html lang="es"> <!--Modifica julian-->
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-
-    <!-- ! BOOTSTRAP 5.3.8 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-    <!-- ! Modifica julian-->
     <link rel="stylesheet" href="../CSS/nav.css">
     <link rel="stylesheet" href="../CSS/adminAddProduct.css">
     <link rel="stylesheet" href="../CSS/adminHome.css">
-
 </head>
 
 <body>
-    <!--!INICIO SIDEBAR-->
+    <!--! SIDEBAR -->
     <aside class="offcanvas offcanvas-md offcanvas-start flex-shrink-0 sidebar" tabindex="-1" id="sidebar">
         <div class="offcanvas-header d-md-none pb-0">
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
@@ -29,20 +23,14 @@
         <div class="d-flex flex-column flex-shrink-0 p-3 h-100">
             <span class="fs-4 tituloAdministrador">Administrador</span>
             <hr>
-
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="adminHome.html" class="nav-link active linkHome">
-                        Home
-                    </a>
+                    <a href="adminHome.html" class="nav-link linkHome">Home</a>
                 </li>
                 <li>
-                    <a href="adminAddProduct.html" class="nav-link">
-                        Productos
-                    </a>
+                    <a href="adminAddProduct.html" class="nav-link active linkAProductos">Productos</a>
                 </li>
             </ul>
-
             <div class="dropdown mt-auto">
                 <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,200 +45,117 @@
             </div>
         </div>
     </aside>
-    <!-- <div id="sidebar-container"></div> -->
 
-    <!--!INICIO SIDEBAR-->
-    <!-- <div class="d-flex">
-
-        <aside class="flex-shrink-0 p-2 sidebar">
-            <div class="d-flex flex-column flex-shrink-0 p-3 miniSidebar" style="width: 280px;">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                    <svg class="bi pe-none me-2" width="40" height="32" aria-hidden="true">
-                        <use href="#bootstrap"></use>
-                    </svg> 
-                    <span class="fs-4 tituloAdministrador">Administrador</span> 
-                </a>
-
-                <hr>
-
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item"> <a href="../HTML/adminHome.html" class="nav-link" aria-current="page"> <svg
-                                class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-                                <use xlink:href="#home"></use>
-                            </svg>
-                            Home
-                        </a> </li>
-                    <li> <a href="../HTML/adminAddProduct.html" class="nav-link active link-body-emphasis linkAProductos"> <svg class="bi pe-none me-2"
-                                width="16" height="16" aria-hidden="true">
-                                <use xlink:href="#grid"></use>
-                            </svg>
-                            Añadir productos
-                        </a> 
-                    </li>
-                </ul>
-                <hr>
-                <div class="dropdown"> 
-                    <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2"> 
-                        <strong></strong>
-                    </a>
-                    <ul class="dropdown-menu text-small shadow">
-                        <li><a class="dropdown-item" href="#">Configuración</a></li>
-                        <li><a class="dropdown-item" href="#">Perfil</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
-                    </ul>
+    <div class="flex-grow-1 container-agregar">
+        <div class="container text-center">
+            <div class="row">
+                <div class="admin-header px-4 py-3">
+                    <h2 class="mb-0 text-center">
+                        <i class="bi bi-box-seam"></i> Listado de productos
+                    </h2>
                 </div>
 
-            </div>
-        </aside> -->
-<!--!FIN SIDEBAR-->
-        
-        <div class="flex-grow-1 container-agregar">
-            <div class="container text-center">
-                <div class="row">
-                    <!-- <div class="col-9"> -->
-                    <!--! ======= ENCABEZADO DEL PANEL ======= -->
-                    <div class="admin-header px-4 py-3">
-                        <h2 class="mb-0 text-center">
-                            <i class="bi bi-box-seam"></i> Listado de productos
-                        </h2>
+                <div class="container-fluid px-4 py-3">
+                    <!-- BARRA DE ACCIONES -->
+                    <div class="d-flex gap-2 mb-3">
+                        <button class="btn btn-success" id="btnAnadir">
+                            <i class="bi bi-plus-lg"></i> Añadir
+                        </button>
+                        <button class="btn btn-outline-secondary" id="btnLista">
+                            <i class="bi bi-list-ul"></i> Listar
+                        </button>
+                        <button class="btn btn-outline-secondary" id="btnOrden">
+                            <i class="bi bi-sort-numeric-down"></i> Ordenar
+                        </button>
                     </div>
 
-                    <!--! ======= CONTENIDO PRINCIPAL ======= -->
-                    <div class="container-fluid px-4 py-3">
-
-                        <!--! BARRA DE ACCIONES -->
-                        <div class="d-flex gap-2 mb-3">
-                            <button class="btn btn-success" id="btnAnadir">
-                                <i class="bi bi-plus-lg"></i> Añadir
-                            </button>
-                            <button class="btn btn-outline-secondary" id="btnLista">
-                                <i class="bi bi-list-ul"></i> Listar
-                            </button>
-                            <button class="btn btn-outline-secondary" id="btnOrden">
-                                <i class="bi bi-sort-numeric-down"></i> Ordenar
-                            </button>
+                    <!-- CONTROLES -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span>Lista</span>
+                            <select class="form-select form-select-sm" id="itemsPorPagina" style="width: 6rem;">
+                                <option value="5" selected>5</option>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                            </select>
+                            <span>por página</span>
                         </div>
-
-                        <!--! CONTROLES: items por página + buscador -->
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-
-                            <!--! Items por página -->
-                            <div class="d-flex align-items-center gap-2">
-                                <span>Lista</span>
-                                <select class="form-select form-select-sm" id="itemsPorPagina" style="width: 6rem;">
-                                    <option value="5" selected>5</option>
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                </select>
-                                <span>por página</span>
-                            </div>
-
-                            <!--! Buscador -->
-                            <div class="d-flex align-items-center gap-2">
-                                <label for="buscador" class="mb-0">Buscar</label>
-                                <input type="text" class="form-control form-control-sm" id="buscador"
-                                    placeholder="Buscar producto..." style="width: 12rem;">
-                            </div>
-
+                        <div class="d-flex align-items-center gap-2">
+                            <label for="buscador" class="mb-0">Buscar</label>
+                            <input type="text" class="form-control form-control-sm" id="buscador"
+                                placeholder="Buscar producto..." style="width: 12rem;">
                         </div>
+                    </div>
 
-                        <!--! TABLA DE PRODUCTOS -->
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover align-middle" id="tablaProductos">
+                    <!-- TABLA DE PRODUCTOS -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover align-middle" id="tablaProductos">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 40px;">
+                                        <input type="checkbox" class="form-check-input" id="checkTodos">
+                                    </th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Categoría</th>
+                                    <th>Precio</th>
+                                    <th>Descuento</th>
+                                    <th>Best Seller</th>
+                                    <th>Fotos</th>
+                                    <th style="width: 5rem;">Disponibilidad</th>
+                                    <th style="width: 5rem;">Stock</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpoTabla">
+                                <tr id="filaVacia">
+                                    <td colspan="11" class="text-center text-muted py-4">
+                                        <i class="bi bi-inbox fs-3 d-block mb-2"></i>
+                                        No hay productos registrados. ¡Añade uno!
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                                <!--! Cabecera -->
-                                <thead class="table-light">
-                                    <tr>
-                                        <th style="width: 40px;">
-                                            <input type="checkbox" class="form-check-input" id="checkTodos">
-                                        </th>
-                                        <th>Nombre</th>
-                                        <th>Descripción</th>
-                                        <th>Categoría</th>
-                                        <th>Precio</th>
-                                        <th>Foto</th>
-                                        <th style="width: 5rem;">No disponible</th>
-                                        <th style="width: 5rem;">Cantidad Stock</th>
-                                        <th>Fecha</th>
-                                    </tr>
-                                </thead>
-
-                                <!--! Cuerpo (se llenará con JS) -->
-                                <tbody id="cuerpoTabla">
-                                    <!--! Fila vacía por defecto -->
-                                    <tr id="filaVacia">
-                                        <td colspan="9" class="text-center text-muted py-4">
-                                            <i class="bi bi-inbox fs-3 d-block mb-2"></i>
-                                            No hay productos registrados. ¡Añade uno!
-                                        </td>
-                                    </tr>
-                                </tbody>
-
-                            </table>
-                        </div>
-
-                        <!--! PIE DE TABLA: info de paginación -->
-                        <div class="d-flex justify-content-between align-items-center mt-2">
-                            <span id="infoPaginacion" class="text-muted small">
-                                Mostrando 0 productos
-                            </span>
-                            <nav>
-                                <ul class="pagination pagination-sm mb-0" id="paginacion">
-                                    <!--! Se generará con JS -->
-                                </ul>
-                            </nav>
-                        </div>
-
-
+                    <!-- PIE DE TABLA -->
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <span id="infoPaginacion" class="text-muted small">Mostrando 0 productos</span>
+                        <nav>
+                            <ul class="pagination pagination-sm mb-0" id="paginacion"></ul>
+                        </nav>
+                    </div>
                 </div>
-
             </div>
 
-            <!--! ===== MODAL: AGREGAR PRODUCTO =====  -->
+            <!-- ===== MODAL: AGREGAR PRODUCTO ===== -->
             <div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="modalProductoLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down">
                     <div class="modal-content">
 
-                        <!-- ! Cabecera del modal  (CERRAR) -->
                         <div class="modal-header border-0 pb-0">
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Cerrar"></button>
                         </div>
 
-                        <!-- ! Cuerpo del modal (INICIO FORM )-->
                         <div class="modal-body px-4 pb-4">
-
-                            <!--! Titulo -->
                             <h4 id="modalProductoLabel" class="text-center fw-bold mb-4">Agregar Producto</h4>
-                            <!--Modifica julian-->
 
-                            <!--! Inicio FORM -->
                             <form id="formProducto" novalidate>
 
-                                <!-- ! Campo Nombre -->
+                                <!-- Nombre -->
                                 <div class="mb-3">
-                                    <label for="nombreProducto" class="form-label label-required">
-                                        Nombre del producto
-                                    </label>
+                                    <label for="nombreProducto" class="form-label label-required">Título de la joya</label>
                                     <input type="text" class="form-control" id="nombreProducto"
-                                        placeholder="Ej: Anillo de oro" required>
-                                    <div class="invalid-feedback">
-                                        El nombre es obligatorio.
-                                    </div>
+                                        placeholder="Ej: Anillo de oro 18k" required>
+                                    <div class="invalid-feedback">El nombre es obligatorio.</div>
                                 </div>
 
-                                <!-- ! Campo Categoría -->
+                                <!-- Categoría -->
                                 <div class="mb-3">
-                                    <label for="categoriaProducto" class="form-label label-required">
-                                        Categoría
-                                    </label>
+                                    <label for="categoriaProducto" class="form-label label-required">Categoría</label>
                                     <select class="form-select" id="categoriaProducto" required>
                                         <option value="" disabled selected>Seleccionar categoría</option>
                                         <option value="Anillos">Anillos</option>
@@ -259,66 +164,51 @@
                                         <option value="Aretes">Aretes</option>
                                         <option value="Otros">Otros</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Selecciona una categoría.
-                                    </div>
+                                    <div class="invalid-feedback">Selecciona una categoría.</div>
                                 </div>
 
-                                <!-- ! Campo Imagen -->
+                                <!-- Descripción -->
                                 <div class="mb-3">
-                                    <label for="imagenProducto" class="form-label">
-                                        Imagen del producto
-                                    </label>
-                                    <input type="file" class="form-control" id="imagenProducto" accept="image/*">
-                                    <!-- Preview de la imagen -->
-                                    <div id="previewImagen" class="mt-2 d-none">
-                                        <img id="imgPreview" src="" alt="Preview" class="img-thumbnail"
-                                            style="max-height: 120px;">
-                                    </div>
-                                </div>
-
-                                <!-- ! Campo Descripción -->
-                                <div class="mb-3">
-                                    <label for="descripcionProducto" class="form-label">
-                                        Descripción
-                                    </label>
+                                    <label for="descripcionProducto" class="form-label">Descripción</label>
                                     <textarea class="form-control" id="descripcionProducto" rows="3"
                                         placeholder="Describe el producto"></textarea>
                                 </div>
 
-                                <!-- ! Campo Precio -->
+                                <!-- Precio -->
                                 <div class="mb-3">
-                                    <label for="precioProducto" class="form-label label-required">
-                                        Precio
-                                    </label>
-                                    <div class="input-group ">
+                                    <label for="precioProducto" class="form-label label-required">Precio</label>
+                                    <div class="input-group">
                                         <span class="input-group-text">$</span>
                                         <input type="number" class="form-control" id="precioProducto"
                                             placeholder="Ej: 500000" min="0" step="0.01" required>
                                     </div>
-                                    <div class="invalid-feedback">
-                                        Ingresa un precio válido.
-                                    </div>
+                                    <div class="invalid-feedback">Ingresa un precio válido.</div>
                                 </div>
 
+                                <!-- Descuento -->
                                 <div class="mb-3">
-                                    <label for="cantidadProducto" class="form-label label-required">
-                                        Cantidad en stock
+                                    <label for="descuentoProducto" class="form-label">
+                                        Descuento <span class="text-muted small">(opcional, en %)</span>
                                     </label>
-                                    <input type="number" class="form-control" id="cantidadProducto" placeholder="Ej: 10"
-                                        min="0" required>
-                                    <div class="invalid-feedback">
-                                        Ingresa una cantidad válida.
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="descuentoProducto"
+                                            placeholder="Ej: 10" min="0" max="100" step="1">
+                                        <span class="input-group-text">%</span>
                                     </div>
+                                    <div class="form-text text-muted">Déjalo vacío o en 0 si no aplica descuento.</div>
                                 </div>
 
-
-
-                                <!-- ! Campo Disponibilidad -->
+                                <!-- Stock -->
                                 <div class="mb-3">
-                                    <label for="disponibilidadProducto" class="form-label">
-                                        Disponibilidad
-                                    </label>
+                                    <label for="cantidadProducto" class="form-label label-required">Cantidad en stock</label>
+                                    <input type="number" class="form-control" id="cantidadProducto"
+                                        placeholder="Ej: 10" min="0" required>
+                                    <div class="invalid-feedback">Ingresa una cantidad válida.</div>
+                                </div>
+
+                                <!-- Disponibilidad -->
+                                <div class="mb-3">
+                                    <label for="disponibilidadProducto" class="form-label">Disponibilidad</label>
                                     <select class="form-select" id="disponibilidadProducto">
                                         <option value="Disponible" selected>Disponible</option>
                                         <option value="No disponible">No disponible</option>
@@ -326,50 +216,67 @@
                                     </select>
                                 </div>
 
-                                <!-- ! Campo Fecha -->
-                                <div class="mb-4">
-                                    <label for="fechaProducto" class="form-label label-required">
-                                        Fecha
-                                    </label>
-                                    <input type="date" class="form-control" id="fechaProducto" required>
-                                    <div class="invalid-feedback">
-                                        Selecciona una fecha.
+                                <!-- Best Seller -->
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="bestSellerProducto">
+                                        <label class="form-check-label" for="bestSellerProducto">
+                                            <i class="bi bi-star-fill text-warning me-1"></i> Marcar como Best Seller
+                                        </label>
                                     </div>
                                 </div>
 
-                                <!-- !Botón guardar -->
+                                <!-- Fecha -->
+                                <div class="mb-3">
+                                    <label for="fechaProducto" class="form-label label-required">Fecha de ingreso</label>
+                                    <input type="date" class="form-control" id="fechaProducto" required>
+                                    <div class="invalid-feedback">Selecciona una fecha.</div>
+                                </div>
+
+                                <!-- Imagen principal -->
+                                <div class="mb-3">
+                                    <label for="imagenProducto" class="form-label">
+                                        <i class="bi bi-image me-1"></i> Imagen principal
+                                    </label>
+                                    <input type="file" class="form-control" id="imagenProducto" accept="image/*">
+                                    <div id="previewImagen" class="mt-2 d-none">
+                                        <img id="imgPreview" src="" alt="Preview" class="img-thumbnail"
+                                            style="max-height: 120px;">
+                                    </div>
+                                </div>
+
+                                <!-- Imagen secundaria (hover) -->
+                                <div class="mb-4">
+                                    <label for="imagenSecundariaProducto" class="form-label">
+                                        <i class="bi bi-image-alt me-1"></i> Imagen secundaria
+                                        <span class="text-muted small">(aparece al pasar el cursor)</span>
+                                    </label>
+                                    <input type="file" class="form-control" id="imagenSecundariaProducto" accept="image/*">
+                                    <div id="previewImagenSecundaria" class="mt-2 d-none">
+                                        <img id="imgPreviewSecundaria" src="" alt="Preview secundaria"
+                                            class="img-thumbnail" style="max-height: 120px;">
+                                    </div>
+                                </div>
+
+                                <!-- Botón guardar -->
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-dark btn-lg">
                                         <i class="bi bi-save"></i> Guardar producto
                                     </button>
                                 </div>
 
-
                             </form>
-                            <!-- ! FIN FORM -->
                         </div>
                     </div>
                 </div>
             </div>
 
-
         </div>
     </div>
 
-    
-</div>
-
-
-
-
-
-    <!-- ! BOOTSTRAP 5.3.8 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-
-    <!-- ! ASOCIAR .JS PERSONALES -->
-    <script src="../Script/script.js"></script>
     <script src="../Script/footerScript.js"></script>
     <script src="../Script/adminAddProduct.js"></script>
 </body>

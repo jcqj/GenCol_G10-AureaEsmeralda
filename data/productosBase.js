@@ -6,8 +6,11 @@ export const productosBase = [
     descripcion: "Oro blanco 24k con esmeraldas naturales.",
     precio: 3200000,
     imagen: "../assets/imagenesCards/anilloBlanco.avif",
+    imagenSecundaria: "../assets/anilloOroblancoRL.png",
     disponibilidad: "Disponible",
-    fecha: "2026-04-20"
+    fecha: "2026-04-20",
+    descuento: 0,
+    bestSeller: true
   },
 
   {
@@ -17,8 +20,11 @@ export const productosBase = [
     descripcion: "Collar con esmeraldas y diamante natural.",
     precio: 8950000,
     imagen: "../assets/imagenesCards/pulsera.jfif",
+    imagenSecundaria: "../assets/CollarEsmeraldaRL.png",
     disponibilidad: "Disponible",
-    fecha: "2026-04-20"
+    fecha: "2026-04-20",
+    descuento: 0,
+    bestSeller: false
   },
 
   {
@@ -28,8 +34,11 @@ export const productosBase = [
     descripcion: "Diseño delicado en oro blanco con brillo intenso.",
     precio: 4495000,
     imagen: "../assets/imagenesCards/aretes.png",
+    imagenSecundaria: "../assets/AretesOroBlancoEsmeraldaRL.png",
     disponibilidad: "Disponible",
-    fecha: "2026-04-20"
+    fecha: "2026-04-20",
+    descuento: 0,
+    bestSeller: false
   },
 
   {
@@ -39,8 +48,11 @@ export const productosBase = [
     descripcion: "Pulsera tipo tennis con incrustaciones de esmeraldas.",
     precio: 1890000,
     imagen: "../assets/imagenesCards/pulsera tennis.jpg",
+    imagenSecundaria: "../assets/PulseraTennisEsmeraldasRL.png",
     disponibilidad: "Disponible",
-    fecha: "2026-04-20"
+    fecha: "2026-04-20",
+    descuento: 0,
+    bestSeller: true
   },
 
   {
@@ -50,8 +62,11 @@ export const productosBase = [
     descripcion: "Cadena cubana con esmeraldas naturales.",
     precio: 10220000,
     imagen: "../assets/imagenesCards/cubana.jfif",
+    imagenSecundaria: "../assets/CadenacubanaRL.png",
     disponibilidad: "Disponible",
-    fecha: "2026-04-20"
+    fecha: "2026-04-20",
+    descuento: 0,
+    bestSeller: false
   },
 
   {
@@ -61,8 +76,11 @@ export const productosBase = [
     descripcion: "Aretes con pendientes largos de diamante natural.",
     precio: 5610000,
     imagen: "../assets/imagenesCards/aretes largos.jfif",
+    imagenSecundaria: "../assets/AretesPendientesDiamantesRL.png",
     disponibilidad: "Disponible",
-    fecha: "2026-04-20"
+    fecha: "2026-04-20",
+    descuento: 10, // ejemplo con 10% de descuento
+    bestSeller: false
   },
 
   {
@@ -72,8 +90,11 @@ export const productosBase = [
     descripcion: "Dije elaborado con zafiros naturales.",
     precio: 3220000,
     imagen: "../assets/imagenesCards/dije.jfif",
+    imagenSecundaria: "../assets/DijeZAfiroCollarRL.png",
     disponibilidad: "Disponible",
-    fecha: "2026-04-20"
+    fecha: "2026-04-20",
+    descuento: 0,
+    bestSeller: false
   },
 
   {
@@ -83,8 +104,11 @@ export const productosBase = [
     descripcion: "Aretes de esmeraldas naturales y diseño elegante.",
     precio: 5380000,
     imagen: "../assets/imagenesCards/aretesEsmeraldas.jfif",
+    imagenSecundaria: "../assets/AretesEsmeraldasNaturalEleganteRL.png",
     disponibilidad: "Disponible",
-    fecha: "2026-04-20"
+    fecha: "2026-04-20",
+    descuento: 0,
+    bestSeller: true
   },
 
   {
@@ -93,9 +117,12 @@ export const productosBase = [
     categoria: "Collares",
     descripcion: "Collar de esmeraldas naturales y diseño elegante.",
     precio: 3200000,
-    imagen: "../assets/imagenesCards/coolarEsmeraldas.jfif",
+    imagen: "../assets/CollarCorazonEsmeraldaFB.png",
+    imagenSecundaria: "../assets/coolarEsmeraldas.jpg",
     disponibilidad: "Disponible",
-    fecha: "2026-04-20"
+    fecha: "2026-04-20",
+    descuento: 0,
+    bestSeller: false
   },
 
   {
@@ -105,7 +132,10 @@ export const productosBase = [
     descripcion: "Pulsera ancha de esmeraldas calibre grueso.",
     precio: 285000,
     imagen: "../assets/imagenesCards/pulseraEs.jfif",
+    imagenSecundaria: "../assets/PulseraEsmeraldaPlateadaRL.png",
     disponibilidad: "Disponible",
-    fecha: "2026-04-20"
+    fecha: "2026-04-20",
+    descuento: 15, // ← ejemplo con 15% de descuento
+    bestSeller: false
   }
 ];
