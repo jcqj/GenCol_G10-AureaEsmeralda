@@ -41,7 +41,7 @@ function cargarProductos() {
 
 
 // ======= CREAR CARD DE UN PRODUCTO =======
-export function crearCard(producto) {
+function crearCard(producto) {
     const contenedor = document.getElementById('contenedorCards');
 
     const card = document.createElement('div');

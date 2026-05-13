@@ -43,7 +43,7 @@ html {
         radial-gradient(ellipse 45% 40% at 85% 80%, rgba(201, 168, 76, .08) 0%, transparent 65%),
         radial-gradient(ellipse 70% 60% at 50% 50%, rgba(13, 33, 24, .6) 0%, transparent 80%);
   z-index: 0;
-  opacity: 04;
+  opacity: 0.4;
   pointer-events: none;
 }
 

@@ -133,10 +133,10 @@ function validateEmail() {
     }
     
     // const usuarios = JSON.parse(localStorage.getItem('aureaEsmeraldaUsers') || '[]');
-    // if (usuarios.some(u => u.email === v)) {
-    //     showError(inputEmail, 'err-email', 'err-email-text', 'Este correo ya está registrado.');
-    //     return false;
-    // }
+    if (usuarios.some(u => u.email === v)) {
+        showError(inputEmail, 'err-email', 'err-email-text', 'Este correo ya está registrado.');
+        return false;
+    }
     clearError(inputEmail, 'err-email');
     return true;
 }
@@ -299,6 +299,6 @@ form.addEventListener('submit', (e) => {
         form.querySelectorAll('.form-control').forEach(el => el.classList.remove('is-valid', 'is-invalid'));
         strengthWrap.style.display = 'none';
         submitBtn.disabled = false;
-        // window.location.href = '/login.html'; // ← descomenta en producción
+        window.location.href = '../HTML/login.html'; 
     }, 2200);
 });

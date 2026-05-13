@@ -18,4 +18,5 @@
         }
     ],
     "liveServer.settings.port": 5501,
+    "livePreview.defaultPreviewPath": "/HTML/index.html",
 }
