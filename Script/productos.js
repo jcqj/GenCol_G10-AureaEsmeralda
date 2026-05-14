@@ -126,7 +126,7 @@ function crearCard(producto) {
             </div>
             <div class="card-footer d-flex gap-2">
                 <button class="btn-cart" data-id="${producto.id}">
-                    <i class="bi bi-bag-plus me-1"></i>Agregar
+                    Agregar <i class="fa-solid fa-cart-shopping"></i>
                 </button>
                 <button class="btn-wishlist btn-sm btn-favorito" data-id="${producto.id}">
                     <i class="bi ${esFavorito(producto.id) ? 'bi-heart-fill text-danger' : 'bi-heart'}"></i>

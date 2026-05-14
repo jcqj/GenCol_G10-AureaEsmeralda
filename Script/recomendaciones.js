@@ -39,7 +39,7 @@ function cargarSugerencias() {
                     <h6 class="fw-bold mb-1">${producto.nombre}</h6>
                     <p class="text-primary fw-bold mb-3">$${Number(producto.precioFinal ?? producto.precio).toLocaleString("es-CO")}</p>
                     <button class="btn btn-outline-dark btn-sm w-100 btn-agregar" data-id="${producto.id}">
-                        <i class="bi bi-bag-plus me-1"></i> Agregar
+                        Agregar <i class="fa-solid fa-cart-shopping"></i>
                     </button>
                 </div>
             </div>

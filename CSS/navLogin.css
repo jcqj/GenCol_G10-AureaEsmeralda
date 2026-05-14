@@ -1,0 +1,153 @@
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --gold-dim: #7a6230;
+  --emerald: #1a3d2b;
+  --emerald-deep: #0d2118;
+  --bg: #080f0b;
+  --surface: #111a14;
+  --surface-2: #182210;
+  --text: #f0ead8;
+  --text-muted: #9b9280;
+  --error: #d4624a;
+  --success: #4caf80;
+  --border: rgba(201, 168, 76, 0.22);
+  --border-focus: rgba(201, 168, 76, 0.7);
+  --radius: 6px;
+}
+
+/* Saludo en navbar */
+.saludo-usuario{
+    display: flex;
+    align-items: center; 
+    gap: 4px; 
+}
+
+.saludo-usuario strong {
+    color: var(--gold-light);
+    font-weight: 600;
+}
+
+/* ── Overlay ─────────────────────────────────────────── */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+    z-index: 9998;
+}
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* ── Sidebar ─────────────────────────────────────────── */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -340px;
+    width: 320px;
+    height: 100vh;
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    box-shadow: -8px 0 30px rgba(0, 0, 0, 0.5);
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.sidebar.active {
+    right: 0;
+}
+
+/* ── Header ──────────────────────────────────────────── */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+.sidebar-header h4 {
+    color: var(--gold-light);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* Botón X — siempre visible */
+.sidebar-header button {
+    border: none;
+    background: none;
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.25rem 0.4rem;
+    line-height: 1;
+    transition: color 0.2s;
+    /* Garantiza que no colapsa aunque FA tarde en cargar */
+    min-width: 1.8rem;
+    min-height: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sidebar-header button:hover {
+    color: var(--text);
+}
+
+/* ── Info del usuario ────────────────────────────────── */
+.sidebar-user-info {
+    margin-bottom: 1rem;
+}
+.sidebar-user-name {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0 0 0.2rem;
+}
+.sidebar-user-email {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    margin: 0;
+    word-break: break-all;
+}
+
+/* ── Divider ─────────────────────────────────────────── */
+.sidebar-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0.75rem 0;
+}
+
+/* ── Contenido (botón cerrar sesión justo arriba del divider) ── */
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    /* Sin margin-top: auto → el botón queda pegado al divider, no al fondo */
+}
+
+/* ── Botón cerrar sesión ─────────────────────────────── */
+.btn-cerrar-sesion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.65rem;
+    border-radius: var(--radius);
+    border: 1px solid rgba(212, 98, 74, 0.4);
+    background: transparent;
+    color: #d4624a;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s;
+}
+.btn-cerrar-sesion:hover {
+    background: rgba(212, 98, 74, 0.12);
+    border-color: #d4624a;
+}
