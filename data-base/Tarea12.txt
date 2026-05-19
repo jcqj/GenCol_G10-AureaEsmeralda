@@ -1,0 +1,238 @@
+
+CREATE DATABASE aurea_esmeralda
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LOCALE_PROVIDER = 'libc'
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+	
+
+-- 1 TABLA USUARIOS
+CREATE TABLE public.usuarios
+(
+	id_us SERIAL,
+	nombre_us VARCHAR(150) NOT NULL,
+	telefono_us VARCHAR(15) NOT NULL,
+	correo_us VARCHAR(150) NOT NULL,
+	contrasena_us VARCHAR(150) NOT NULL,
+	estado_activo_us BOOLEAN DEFAULT TRUE,
+	rol_us VARCHAR(20),
+	
+	CONSTRAINT pk_id_us PRIMARY KEY (id_us),
+	CONSTRAINT uq_correo_us UNIQUE (correo_us),
+	CONSTRAINT ck_rol_us CHECK (rol_us IN ('cliente' , 'admin'))
+);
+
+-- 2 TABLA CATEGORIAS
+CREATE TABLE public.categorias
+(
+    id_cat SERIAL,
+    nombre_cat VARCHAR(100) NOT NULL,
+    descripcion_cat TEXT,
+
+    CONSTRAINT pk_id_cat PRIMARY KEY (id_cat),
+    CONSTRAINT uq_nombre_cat UNIQUE (nombre_cat)
+);
+
+-- 3 TABLA PRODUCTOS
+CREATE TABLE public.productos
+(
+    id_pd SERIAL,
+    cat_id INTEGER,
+    nombre_pd VARCHAR(150) NOT NULL,
+    descripcion_pd TEXT,
+    precio_original_pd DECIMAL(12,0) NOT NULL,
+    descuento_pd DECIMAL(5,0) DEFAULT 0,
+    stock_pd INTEGER DEFAULT 0,
+    disponible_pd BOOLEAN DEFAULT TRUE,
+    best_seller_pd BOOLEAN DEFAULT FALSE,
+    imagen_principal_pd VARCHAR(255),
+    imagen_secundaria_pd VARCHAR(255),
+    creado_en_pd TIMESTAMP DEFAULT NOW(),
+
+    CONSTRAINT pk_id_pd PRIMARY KEY (id_pd),
+    CONSTRAINT fk_cat_id FOREIGN KEY (cat_id)
+        REFERENCES categorias(id_cat) ON DELETE SET NULL,
+    CONSTRAINT ck_precio_original CHECK (precio_original_pd >= 0),
+    CONSTRAINT ck_descuento CHECK (descuento_pd >= 0 AND descuento_pd <= 100),
+    CONSTRAINT ck_stock CHECK (stock_pd >= 0)
+);
+
+CREATE INDEX idx_productos_cat ON productos(cat_id);
+CREATE INDEX idx_productos_disponible ON productos(disponible_pd);
+CREATE INDEX idx_productos_best_seller ON productos(best_seller_pd);
+
+-- 4 CERTIFICADOS
+CREATE TABLE public.certificados
+(
+    id_cert SERIAL,
+    pd_id INTEGER NOT NULL,
+    nombre_gemologo_cert VARCHAR(150),
+    creado_en_cert TIMESTAMP DEFAULT NOW(),
+    detalles_cert TEXT,
+    codigo_cert VARCHAR(50) NOT NULL,
+    archivo_url_cert VARCHAR(255),
+    imagen_joya_cert VARCHAR(255),
+
+    CONSTRAINT pk_id_cert PRIMARY KEY (id_cert),
+    CONSTRAINT fk_cert_pd FOREIGN KEY (pd_id)
+        REFERENCES productos(id_pd) ON DELETE CASCADE,
+    CONSTRAINT uq_codigo_cert UNIQUE (codigo_cert)
+);
+
+CREATE INDEX idx_certificados_producto ON certificados(pd_id);
+
+-- 5 FAVORITOS
+CREATE TABLE public.favoritos
+(
+    id_fav SERIAL,
+    us_id INTEGER NOT NULL,
+    pd_id INTEGER NOT NULL,
+    creado_en_fav TIMESTAMP DEFAULT NOW(),
+
+    CONSTRAINT pk_id_fav PRIMARY KEY (id_fav),
+    CONSTRAINT fk_fav_us FOREIGN KEY (us_id)        
+        REFERENCES usuarios(id_us) ON DELETE CASCADE,
+    CONSTRAINT fk_fav_pd FOREIGN KEY (pd_id)      
+        REFERENCES productos(id_pd) ON DELETE CASCADE,
+    CONSTRAINT uq_fav_us_pd UNIQUE (us_id, pd_id)
+);
+
+-- 6 CARRITOS
+CREATE TABLE public.carritos
+(
+    id_car SERIAL,
+    us_id INTEGER NOT NULL,
+    creado_en_car TIMESTAMP DEFAULT NOW(),
+    actualizado_en_car TIMESTAMP,
+
+    CONSTRAINT pk_id_car PRIMARY KEY (id_car),
+    CONSTRAINT fk_car_us FOREIGN KEY (us_id)      
+        REFERENCES usuarios(id_us) ON DELETE CASCADE,
+    CONSTRAINT uq_us_id UNIQUE (us_id)
+);
+
+-- 7 CARRITO ITEMS
+CREATE TABLE public.carrito_items
+(
+    id_it SERIAL,
+    car_id INTEGER NOT NULL,
+    pd_id INTEGER NOT NULL,
+    precio_momentaneo_it DECIMAL(12,0),
+    cantidad_it INTEGER DEFAULT 1,
+    creado_en_it TIMESTAMP DEFAULT NOW(),
+
+    CONSTRAINT pk_id_it PRIMARY KEY (id_it),
+    CONSTRAINT fk_car_id FOREIGN KEY (car_id)
+        REFERENCES carritos(id_car) ON DELETE CASCADE,
+    CONSTRAINT fk_items_producto FOREIGN KEY (pd_id)
+        REFERENCES productos(id_pd),              
+    CONSTRAINT ck_cantidad CHECK (cantidad_it > 0),
+    CONSTRAINT uq_items_carrito_producto UNIQUE (car_id, pd_id)
+);
+
+CREATE INDEX idx_items_carrito ON carrito_items(car_id);
+CREATE INDEX idx_items_producto ON carrito_items(pd_id);
+
+
+
+
+-- Datos de prueba: 10 usuarios
+INSERT INTO usuarios (nombre_us, telefono_us, correo_us, contrasena_us, estado_activo_us, rol_us) VALUES
+('María González', '5512345678', 'maria.gonzalez@email.com', '$2b$10$hash123456789', TRUE, 'cliente'),
+('Juan Pérez', '5523456789', 'juan.perez@email.com', '$2b$10$hash234567890', TRUE, 'cliente'),
+('Ana Martínez', '5534567890', 'ana.martinez@email.com', '$2b$10$hash345678901', TRUE, 'cliente'),
+('Carlos Rodríguez', '5545678901', 'carlos.rodriguez@email.com', '$2b$10$hash456789012', TRUE, 'admin'),
+('Laura Sánchez', '5556789012', 'laura.sanchez@email.com', '$2b$10$hash567890123', TRUE, 'cliente'),
+('Pedro López', '5567890123', 'pedro.lopez@email.com', '$2b$10$hash678901234', FALSE, 'cliente'),
+('Sofía Hernández', '5578901234', 'sofia.hernandez@email.com', '$2b$10$hash789012345', TRUE, 'cliente'),
+('Diego Torres', '5589012345', 'diego.torres@email.com', '$2b$10$hash890123456', TRUE, 'cliente'),
+('Valentina Ruiz', '5590123456', 'valentina.ruiz@email.com', '$2b$10$hash901234567', TRUE, 'cliente'),
+('Andrés Flores', '5501234567', 'andres.flores@email.com', '$2b$10$hash012345678', TRUE, 'admin');
+
+
+-- Datos de prueba: 10 categorías
+INSERT INTO categorias (nombre_cat, descripcion_cat) VALUES
+('Anillos', 'Anillos de oro, plata y platino con piedras preciosas'),
+('Collares', 'Collares y gargantillas con dijes y gemas'),
+('Pulseras', 'Pulseras de diferentes materiales y estilos'),
+('Aretes', 'Aretes y pendientes para toda ocasión'),
+('Relojes', 'Relojes de lujo y edición limitada'),
+('Dijes', 'Dijes personalizables para collares y pulseras'),
+('Juegos', 'Sets completos de joyería coordinada'),
+('Anillos de Compromiso', 'Anillos de compromiso con diamantes certificados'),
+('Alianzas', 'Alianzas matrimoniales en oro y platino'),
+('Joyería Infantil', 'Joyas delicadas y seguras para niños');
+
+
+-- Datos de prueba: 10 productos
+INSERT INTO productos (cat_id, nombre_pd, descripcion_pd, precio_original_pd, descuento_pd, stock_pd, disponible_pd, best_seller_pd, imagen_principal_pd, imagen_secundaria_pd) VALUES
+(1, 'Anillo Solitario Diamante 1ct', 'Anillo de oro blanco 18K con diamante certificado de 1 quilate, corte brillante', 45000, 10, 5, TRUE, TRUE, '/img/anillo-diamante-1ct.jpg', '/img/anillo-diamante-1ct-2.jpg'),
+(1, 'Anillo Esmeralda Colombiana', 'Anillo de oro amarillo 18K con esmeralda natural de 2 quilates y diamantes laterales', 38000, 0, 3, TRUE, FALSE, '/img/anillo-esmeralda.jpg', '/img/anillo-esmeralda-2.jpg'),
+(2, 'Collar Perlas Akoya', 'Collar de perlas cultivadas Akoya de 7-8mm con broche de oro blanco', 12500, 15, 8, TRUE, TRUE, '/img/collar-perlas.jpg', '/img/collar-perlas-2.jpg'),
+(3, 'Pulsera Tennis Diamantes', 'Pulsera estilo tennis con 50 diamantes talla brillante en oro blanco', 52000, 0, 2, TRUE, FALSE, '/img/pulsera-tennis.jpg', '/img/pulsera-tennis-2.jpg'),
+(4, 'Aretes Zafiro Azul', 'Aretes colgantes con zafiros azules naturales y diamantes en oro blanco', 18500, 5, 6, TRUE, FALSE, '/img/aretes-zafiro.jpg', '/img/aretes-zafiro-2.jpg'),
+(8, 'Anillo Compromiso Halo Diamante', 'Anillo de compromiso con diamante central 0.5ct y halo de diamantes', 28000, 0, 4, TRUE, TRUE, '/img/anillo-halo.jpg', '/img/anillo-halo-2.jpg'),
+(9, 'Alianza Oro Rosa Mate', 'Alianza de oro rosa 18K con acabado mate y bisel pulido', 8500, 0, 12, TRUE, FALSE, '/img/alianza-oro-rosa.jpg', '/img/alianza-oro-rosa-2.jpg'),
+(2, 'Collar Rubí Birmano', 'Collar con rubí natural de Birmania de 3 quilates en montura de platino', 65000, 20, 1, TRUE, FALSE, '/img/collar-rubi.jpg', '/img/collar-rubi-2.jpg'),
+(5, 'Reloj Automático Diamantes', 'Reloj automático suizo con bisel de diamantes y correa de piel', 95000, 0, 2, TRUE, TRUE, '/img/reloj-diamantes.jpg', '/img/reloj-diamantes-2.jpg'),
+(6, 'Dije Inicial Diamantes', 'Dije con inicial personalizada en oro amarillo y pavé de diamantes', 7200, 0, 15, TRUE, FALSE, '/img/dije-inicial.jpg', '/img/dije-inicial-2.jpg');
+
+
+-- Datos de prueba: 10 certificados
+INSERT INTO certificados (pd_id, nombre_gemologo_cert, detalles_cert, codigo_cert, archivo_url_cert, imagen_joya_cert) VALUES
+(1, 'GIA - Gemological Institute', 'Diamante redondo brillante, 1.02 quilates, Color D, Claridad VS1, Corte Excelente, Fluorescencia Ninguna', 'GIA-6214567890', '/cert/GIA-6214567890.pdf', '/img/cert-diamante-1ct.jpg'),
+(1, 'IGI - International Gemological', 'Certificación complementaria: Diamante tipo IIa, origen Canadá', 'IGI-4521987632', '/cert/IGI-4521987632.pdf', '/img/cert-diamante-igi.jpg'),
+(2, 'Gübelin Gem Lab', 'Esmeralda natural, origen Colombia (Muzo), 2.15 quilates, tratamiento moderado de aceite', 'GUB-7891234567', '/cert/GUB-7891234567.pdf', '/img/cert-esmeralda.jpg'),
+(5, 'GIA - Gemological Institute', 'Zafiro azul natural, origen Ceilán (Sri Lanka), 1.85 quilates, sin tratamiento térmico', 'GIA-9876543210', '/cert/GIA-9876543210.pdf', '/img/cert-zafiro.jpg'),
+(6, 'AGS - American Gem Society', 'Diamante redondo, 0.52 quilates, Color E, Claridad VVS2, Corte Ideal', 'AGS-1122334455', '/cert/AGS-1122334455.pdf', '/img/cert-halo.jpg'),
+(8, 'SSEF - Swiss Gemmological Institute', 'Rubí natural, origen Birmania (Myanmar), 3.08 quilates, sin tratamiento térmico detectado', 'SSEF-5566778899', '/cert/SSEF-5566778899.pdf', '/img/cert-rubi.jpg'),
+(9, 'COSC - Contrôle Officiel Suisse', 'Cronómetro certificado, precisión -2/+2 segundos por día, calibre automático SW300', 'COSC-9988776655', '/cert/COSC-9988776655.pdf', '/img/cert-reloj.jpg'),
+(3, 'GIA - Gemological Institute', 'Perlas Akoya cultivadas, 7.5-8.0mm, forma redonda, lustre excelente, superficie limpia', 'GIA-3344556677', '/cert/GIA-3344556677.pdf', '/img/cert-perlas.jpg'),
+(4, 'HRD - Hoge Raad voor Diamant', 'Diamantes talla brillante, 50 piedzas, peso total 2.35 quilates, Color F-G, Claridad VS', 'HRD-2233445566', '/cert/HRD-2233445566.pdf', '/img/cert-tennis.jpg'),
+(7, 'IGI - International Gemological', 'Oro rosa 18K (750/1000), peso 4.2 gramos, aleación sin níquel, hipoalergénico', 'IGI-6677889900', '/cert/IGI-6677889900.pdf', '/img/cert-oro-rosa.jpg');
+
+
+
+-- Datos de prueba: 10 favoritos
+INSERT INTO favoritos (us_id, pd_id) VALUES
+(1, 1),   -- María guardó Anillo Solitario
+(1, 3),   -- María guardó Collar Perlas
+(2, 1),   -- Juan guardó Anillo Solitario
+(2, 6),   -- Juan guardó Anillo Compromiso Halo
+(3, 5),   -- Ana guardó Aretes Zafiro
+(3, 8),   -- Ana guardó Collar Rubí
+(4, 9),   -- Carlos guardó Reloj Automático
+(5, 2),   -- Laura guardó Anillo Esmeralda
+(5, 7),   -- Laura guardó Alianza Oro Rosa
+(7, 10);  -- Sofía guardó Dije Inicial
+
+
+
+-- Datos de prueba: 10 carritos (1 por usuario)
+INSERT INTO carritos (us_id, actualizado_en_car) VALUES
+(1, NOW()),
+(2, NOW()),
+(3, NOW()),
+(4, NOW()),
+(5, NOW()),
+(6, NOW()),
+(7, NOW()),
+(8, NOW()),
+(9, NOW()),
+(10, NOW());
+
+
+-- Datos de prueba: 10 items en carritos
+INSERT INTO carrito_items (car_id, pd_id, precio_momentaneo_it, cantidad_it) VALUES
+(1, 1, 45000, 1),    -- María: Anillo Solitario (1 unidad)
+(1, 3, 12500, 2),    -- María: Collar Perlas (2 unidades - regalo para mamá y hermana)
+(2, 6, 28000, 1),    -- Juan: Anillo Compromiso Halo (1 unidad)
+(3, 5, 18500, 1),    -- Ana: Aretes Zafiro (1 unidad)
+(3, 8, 65000, 1),    -- Ana: Collar Rubí (1 unidad)
+(4, 9, 95000, 1),    -- Carlos: Reloj Automático (1 unidad)
+(5, 2, 38000, 1),    -- Laura: Anillo Esmeralda (1 unidad)
+(7, 10, 7200, 3),    -- Sofía: Dije Inicial (3 unidades - para ella y sus 2 hijas)
+(8, 4, 52000, 1),    -- Diego: Pulsera Tennis (1 unidad)
+(9, 7, 8500, 2);     -- Valentina: Alianza Oro Rosa (2 unidades - para ella y su pareja)
