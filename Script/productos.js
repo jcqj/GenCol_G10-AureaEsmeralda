@@ -35,8 +35,24 @@ function mostrarToast() {
 
 // ======= CARGAR TODOS LOS PRODUCTOS =======
 function cargarProductos() {
+
+    const contenedor = document.getElementById('contenedorCards');
+    contenedor.innerHTML = '';
+
     const productos = getTodosProductos();
-    productos.forEach(producto => crearCard(producto));
+
+    // Leer categoría desde URL
+    const params = new URLSearchParams(window.location.search);
+    const categoriaURL = params.get('categoria');
+
+    // Filtrar si existe categoría
+    const productosFiltrados = categoriaURL
+        ? productos.filter(producto =>
+            producto.categoria.toLowerCase() === categoriaURL.toLowerCase()
+        )
+        : productos;
+
+    productosFiltrados.forEach(producto => crearCard(producto));
 }
 
 
