@@ -1,0 +1,328 @@
+:root {
+    --gold:         #d4af37;
+    --gold-light:   #e8c97a;
+    --gold-pale:    #f5e9c0;
+    --emerald:      #1a3d2b;
+    --emerald-deep: #0d2118;
+    --emerald-mid:  #013927;
+    --muted:        #6b6b80;
+    --bg-page:      #0f0f0f;
+    --bg-section:   #111710;
+}
+
+/* ── Página ── */
+body {
+    background: var(--emerald-deep);
+    font-family: "DM Sans", sans-serif;
+    min-height: 100vh;
+    color: #1c1c1c;
+}
+
+/* ── Encabezado de sección ── */
+.encabezado-favoritos {
+    padding: 60px 0 32px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    margin-bottom: 48px;
+}
+
+.etiqueta-favoritos {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.titulo-favoritos {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: #f0ece4;
+    line-height: 1.15;
+    margin: 0 0 10px;
+}
+
+.titulo-favoritos em {
+    font-style: italic;
+    color: var(--gold-light);
+}
+
+.contador-favoritos {
+    font-size: 0.82rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+}
+
+/* ── Grid ── */
+#contenedor-tarjetas {
+    padding-bottom: 80px;
+}
+
+/* ── Tarjeta de producto ── */
+.tarjeta-producto {
+    background: #F8F8FF;
+    border: 3px solid var(--emerald);
+    border-radius: 15px;
+    padding: 24px;
+    overflow: hidden;
+    transition:
+        transform 0.25s,
+        border-color 0.25s,
+        box-shadow 0.25s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta-producto:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold-light);
+    box-shadow: 0 12px 36px rgba(200, 255, 0, 0.08);
+}
+
+/* ── Área de imagen ── */
+.contenedor-imagen-tarjeta {
+    position: relative;
+    background: #F8F8FF;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    overflow: hidden;
+}
+
+.envoltura-imagen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagen-principal {
+    max-height: 150px;
+    object-fit: contain;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.imagen-secundaria {
+    max-height: 150px;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    z-index: 2;
+}
+
+.tarjeta-producto:hover .imagen-principal {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.tarjeta-producto:hover .imagen-secundaria {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.02);
+}
+
+.tarjeta-producto:hover .envoltura-imagen:not(:has(.imagen-secundaria)) .imagen-principal {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+/* ── Etiquetas ── */
+.etiqueta-tarjeta {
+    position: absolute;
+    top: 0.75rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2em 0.6em;
+    border-radius: 40px;
+    z-index: 3;
+}
+
+.etiqueta-tarjeta.mas-vendido {
+    left: 0.75rem;
+    background: #0F5C4D;
+    color: #fff;
+}
+
+.etiqueta-tarjeta.oferta {
+    right: 0.75rem;
+    background: var(--emerald-deep);
+    color: #fff;
+}
+
+/* ── Calificación ── */
+.calificacion {
+    color: #facc15;
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
+}
+
+.calificacion span {
+    color: var(--muted);
+    font-size: 0.78rem;
+    margin-left: 0.3rem;
+}
+
+/* ── Cuerpo de tarjeta ── */
+.tarjeta-producto .cuerpo-tarjeta {
+    flex: 1;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.categoria-producto {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.nombre-producto {
+    font-family: "Playfair Display", serif;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    color: var(--emerald);
+    margin: 0;
+}
+
+.descripcion-producto {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+    flex: 1;
+}
+
+.fila-precio {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+}
+
+.precio-actual {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--emerald);
+}
+
+.precio-anterior {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: line-through;
+}
+
+/* ── Pie de tarjeta ── */
+.tarjeta-producto .pie-tarjeta {
+    background: transparent;
+    border-top: 1px solid var(--border);
+    padding: 1rem 1.25rem;
+    display: flex;
+    gap: 0.6rem;
+}
+
+.boton-carrito {
+    flex: 1;
+    background: linear-gradient(135deg, #013927, #025c3f);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.55rem;
+    transition: opacity 0.2s, transform 0.1s;
+    cursor: pointer;
+}
+
+.boton-carrito:hover {
+    background: linear-gradient(135deg, #025c3f, #013927);
+    transform: scale(0.98);
+}
+
+.boton-lista-deseos {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: #ef4444;
+    padding: 0.55rem 0.75rem;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+
+.boton-lista-deseos:hover {
+    color: #ef4444;
+    border-color: #ef4444;
+}
+
+/* ── Estado vacío ── */
+#mensaje-favoritos-vacio {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+#mensaje-favoritos-vacio i {
+    font-size: 3.5rem;
+    color: rgba(212, 175, 55, 0.25);
+    display: block;
+    margin-bottom: 20px;
+}
+
+#mensaje-favoritos-vacio h5 {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+#mensaje-favoritos-vacio p {
+    color: #3a3a3a;
+    font-size: 0.88rem;
+    margin-bottom: 28px;
+}
+
+#mensaje-favoritos-vacio .btn {
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    color: var(--gold-light);
+    padding: 10px 32px;
+    border-radius: 40px;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.25s, color 0.25s;
+}
+
+#mensaje-favoritos-vacio .btn:hover {
+    background: var(--gold);
+    color: var(--emerald-deep);
+    border-color: var(--gold);
+}
+
+/* ── Toast ── */
+.toast-container { z-index: 9999; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .titulo-favoritos { font-size: 1.8rem; }
+    .encabezado-favoritos { padding: 40px 0 24px; }
+
+    .tarjeta-producto .cuerpo-tarjeta { padding: 1rem; }
+    .tarjeta-producto .pie-tarjeta { padding: 0.75rem 1rem; }
+
+    .contenedor-imagen-tarjeta { height: 180px; }
+}
