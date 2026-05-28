@@ -1,21 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
+:root {
+  --bg: #F5F5F5;
+  --surface: #1C1C1C;
+  --border: #39885D;
+  --accent: #013927;
+  --text: #000000;
+  --muted: #6b6b80;
+  --card-bg: #1C1C1C;
+  --border-card: #d4af37;
+  --gold-light: #e8c97a;
+  --emerald: #1a3d2b;
+  --emerald-deep: #0d2118;
+
+}
+
+
 /* HERO */
 .hero {
   position: relative;
-  height: 100%;
+  min-height: 100vh;
   overflow: hidden;
   font-family: "Playfair Display", serif;
+  display: flex;
+  align-items: center;
 }
 
 /* IMAGEN */
 .hero__img {
   position: absolute;
   inset: 0;
-
   width: 100%;
   height: 100%;
-
   object-fit: cover;
-  object-position: right center;
+  object-position: right top;
 
   z-index: 1;
 }
@@ -25,13 +52,11 @@
   position: absolute;
   inset: 0;
 
-  background: linear-gradient(
-    to right,
-    rgba(216, 210, 196, 0.95) 25%,
-    rgba(216, 210, 196, 0.7) 45%,
-    rgba(216, 210, 196, 0.2) 65%,
-    transparent 100%
-  );
+  background: linear-gradient(to right,
+      rgba(216, 210, 196, 0.95) 25%,
+      rgba(216, 210, 196, 0.7) 45%,
+      rgba(216, 210, 196, 0.2) 65%,
+      transparent 100%);
 
   z-index: 2;
 }
@@ -42,14 +67,14 @@
   z-index: 3;
 
   max-width: 550px;
-  padding: 100px 60px;
+  padding: 100px clamp(20px, 5vw, 60px);
 }
 
 /* TEXTO */
 .hero_tagline {
   letter-spacing: 5px;
   font-size: 0.75rem;
-  color: #39885d;
+  color: var(--emerald);
 }
 
 .hero_title {
@@ -73,33 +98,501 @@
 
 .btn-gold {
   background-color: #d4af37;
-  color: #1c1c1c;
+  color: var(--emerald-deep);
   border-radius: 50px;
-  padding: 12px 28px;
+  padding: 18px 45px;
   border: none;
 }
 
-@media (max-width: 768px) {
+.btn-gold:hover {
+  background-color: var(--emerald-deep);
+  color: var(--gold-light);
+}
 
-  .hero {
-    height: 90vh;
-  }
 
+
+/* video luedo de hero */
+.video-section {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+}
+
+
+
+.video-overlay {
+  z-index: 3;
+}
+
+.video-section video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  position: relative;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  z-index: 2;
+
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.35));
+}
+
+.video-overlay h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-shadow:
+    0 0 20px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+/* grid categorias */
+.categorias {
+  padding: 60px 20px;
+  background: #080f0b;
+  text-align: center;
+}
+
+.categoria::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 15% 20%, rgba(26, 61, 43, .55) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 40% at 85% 80%, rgba(201, 168, 76, .08) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(13, 33, 24, .6) 0%, transparent 80%);
+  z-index: 0;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.categorias h2 {
+  margin-bottom: 40px;
+  letter-spacing: 4px;
+  font-size: 28px;
+  color: white;
+  font-weight: 300;
+}
+
+.categorias-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.categoria {
+  position: relative;
+  height: 620px;
+  overflow: hidden;
+}
+
+.categoria img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.categoria:hover img {
+  transform: scale(1.05);
+}
+
+.categoria span {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 22px;
+  letter-spacing: 3px;
+  font-weight: 300;
+}
+
+
+/* sobre nuestra historia y nosotros  */
+.historia {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  height: 500px;
+
+  overflow: hidden;
+}
+
+.img-box {
+  overflow: hidden;
+}
+
+.img-box img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transition: transform 0.5s ease;
+}
+
+
+.img-box img:hover {
+  transform: scale(1.05);
+}
+
+
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  backdrop-filter: blur(4px);
+
+  background: rgba(0, 0, 0, 0.15);
+}
+
+
+.overlay h3 {
+  color: white;
+  font-size: 28px;
+  letter-spacing: 3px;
+  font-weight: 300;
+  margin-bottom: 20px;
+
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.overlay a {
+  display: inline-block;
+  padding: 12px 28px;
+
+  background: #d4af37;
+  color: var(--emerald-deep);
+
+  text-decoration: none;
+  border-radius: 30px;
+
+  transition: 0.3s;
+}
+
+.overlay a:hover {
+  color: white;
+  background: var(--emerald-deep);
+}
+
+
+/* razones para elegirnos */
+
+.razones {
+  padding: 80px clamp(20px, 6vw, 100px);
+  background: #f5f5f5;
+  text-align: center;
+  background: #080f0b;
+}
+
+.razones::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 15% 20%, rgba(26, 61, 43, .55) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 40% at 85% 80%, rgba(201, 168, 76, .08) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(13, 33, 24, .6) 0%, transparent 80%);
+  z-index: 0;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+
+.razones-titulo {
+  margin-bottom: 60px;
+}
+
+.razones-titulo h2 {
+  font-size: 28px;
+  font-weight: 300;
+  font-family: 'Playfair Display', serif;
+  color: white;
+}
+
+.razones-container {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.razon-card {
+  width: 220px;
+}
+
+.razon-card i {
+  font-size: 4rem;
+  color: rgb(212, 175, 55);
+  margin-bottom: 20px;
+}
+
+.razon-card h3 {
+  font-size: 28px;
+  font-weight: 300;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.razon-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #777;
+}
+
+
+
+/* hablanoos */
+.bannerFinal {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+
+  background-image: url("../assets/imagen-final.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* sombra oscura encima de la imagen */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* contenido */
+.hablanos {
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+  color: white;
+
+  max-width: 700px;
+  padding: 20px;
+}
+
+.tituloP {
+  font-family: 'Playfair Display', serif;
+  font-size: 60px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-shadow:
+    0 0 20px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+.contenidoHablanos {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+/* botón */
+.btnBanner {
+  display: block;
+  width: max-content;
+  margin: 0 auto;
+
+  padding: 12px 28px;
+  background: #d4af37;
+  color: var(--emerald-deep);
+  text-decoration: none;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.btnBanner:hover {
+  color: white;
+  background: var(--emerald-deep);
+}
+
+
+
+/* ESTILOS RESPONSIVE (MEDIA QUERIES)*/
+
+/* --- PANTALLAS INTERMEDIAS (ventana a media pantalla, ~1100px) --- */
+@media (max-width: 1100px) {
   .hero__content {
-    padding: 60px 20px;
-    text-align: center;
-    margin: 0 auto;
+    max-width: 460px;
   }
 
   .hero_title {
-    font-size: 2.4rem;
+    font-size: 3rem;
+  }
+
+  .razones-container {
+    gap: 50px;
+  }
+}
+
+/* --- TABLETAS (Pantallas menores a 992px) --- */
+@media (max-width: 992px) {
+  .hero_title {
+    font-size: 2.8rem;
+  }
+
+  .hero__content {
+    max-width: 400px;
+  }
+
+  .video-overlay h2,
+  .tituloP {
+    font-size: 45px;
+  }
+
+  .historia {
+    grid-template-columns: repeat(2, 1fr);
+    height: auto;
+  }
+
+  .img-box {
+    height: 250px;
+  }
+
+  .razones {
+    padding: 60px 40px;
+  }
+
+  .razones-container {
+    gap: 40px;
+  }
+
+  .categoria {
+    height: 480px;
+  }
+}
+
+/* --- CELULARES (Pantallas menores a 768px) --- */
+@media (max-width: 768px) {
+
+  /* HERO */
+  .hero {
+    min-height: 85vh;
+    /* Un poco más corto en móviles para mejorar UX */
+  }
+
+  .hero::after {
+    /* Cambiamos el degradado para que cubra de abajo hacia arriba, 
+       ya que en móvil el texto se apilará verticalmente */
+    background: linear-gradient(to top,
+        rgba(216, 210, 196, 0.95) 40%,
+        rgba(216, 210, 196, 0.7) 70%,
+        transparent 100%);
+  }
+
+  .hero__content {
+    padding: 140px 20px 40px 20px;
+    /* Más espacio arriba para no tapar la foto */
+    max-width: 100%;
+    text-align: center;
+    /* Centramos el texto en móviles */
+  }
+
+  .hero_title {
+    font-size: 2.3rem;
   }
 
   .hero_buttons {
     justify-content: center;
+    /* Centramos los botones del hero */
+    flex-direction: column;
+    /* Si tienes más de un botón, se apilarán uno bajo el otro */
+    gap: 10px;
   }
 
-  .hero__img {
-    object-position: center;
+  .btn-gold {
+    padding: 14px 35px;
+    width: 100%;
+    /* El botón ocupa el ancho disponible para facilitar el clic */
+  }
+
+  /* VIDEO SECCIÓN */
+  .video-section {
+    height: 50vh;
+    /* Reducimos la altura del video en celular */
+  }
+
+  .video-overlay h2 {
+    font-size: 32px;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  /* CATEGORÍAS */
+  .categorias-grid {
+    grid-template-columns: 1fr;
+    /* Pasa de 2 columnas a 1 sola columna */
+    gap: 15px;
+  }
+
+  .categoria {
+    height: 400px;
+    /* Reducimos la altura de cada categoría en móvil */
+  }
+
+  /* NUESTRA HISTORIA */
+  .historia {
+    grid-template-columns: 1fr;
+    /* Las imágenes de historia se apilan en 1 sola columna */
+  }
+
+  /* RAZONES POR LAS QUE ELEGIRNOS */
+  .razones-container {
+    flex-direction: column;
+    /* Las tarjetas se alinean una debajo de otra */
+    align-items: center;
+  }
+
+  .razon-card {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  /* BANNER FINAL (HÁBLANOS) */
+  .bannerFinal {
+    min-height: 60vh;
+  }
+
+  .tituloP {
+    font-size: 32px;
+    /* Tamaño cómodo para pantallas táctiles */
+  }
+
+  .contenidoHablanos {
+    font-size: 1rem;
+    padding: 0 10px;
   }
 }

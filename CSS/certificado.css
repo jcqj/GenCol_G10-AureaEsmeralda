@@ -203,14 +203,16 @@ body {
 
 /* NUEVO nombre */
 .panel-info {
-    width: 300px;
+    width: 350px;
     padding: 20px;
     border-radius: 25px;
     background: rgba(255, 255, 255, .08);
     backdrop-filter: blur(10px);
     position: sticky;
     top: 20px;
-
+    height: auto; 
+    align-self: flex-start; 
+    margin-top: 200px;
 }
 
 
