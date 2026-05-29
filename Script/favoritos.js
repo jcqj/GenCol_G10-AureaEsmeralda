@@ -166,8 +166,8 @@ function verificarVacio() {
         mensaje.className = "col-12 text-center py-5";
         mensaje.innerHTML = `
             <i class="bi bi-heart" style="font-size: 3rem; color: #ccc;"></i>
-            <h5 class="mt-3 text-muted">Aún no tienes productos favoritos</h5>
-            <p class="text-muted">Explora nuestra colección y guarda lo que más te guste.</p>
+            <h5 class="mt-3 style="color: #e8c97a;"">Aún no tienes productos favoritos</h5>
+            <p class="texto" #e8c97a >Explora nuestra colección y guarda lo que más te guste.</p>
             <a href="./productos.html" class="btn btn-dark mt-2">Ver productos</a>
         `;
         contenedor.appendChild(mensaje);
