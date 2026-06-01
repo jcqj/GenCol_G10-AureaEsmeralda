@@ -113,6 +113,10 @@
     margin-top: 54px;
 }
 
+#total {
+    color: var(--verde-elegante) !important;
+}
+
 /* Botón cangear cupon */
 .input-group .btn-dark {
     background: linear-gradient(135deg, #013927, #025c3f);

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,9 @@
     <link rel="stylesheet" href="../CSS/nav.css">
     <link rel="stylesheet" href="../CSS/adminAddProduct.css">
     <link rel="stylesheet" href="../CSS/adminHome.css">
+    <link rel="stylesheet" href="../CSS/sidebar.css">
 </head>
+
 <body>
     <!--!INICIO SIDEBAR-->
     <aside class="offcanvas offcanvas-md offcanvas-start flex-shrink-0 sidebar" tabindex="-1" id="sidebar">
@@ -35,21 +38,36 @@
                 </li>
             </ul>
 
-            <div class="dropdown mt-auto">
+            <!-- <div class="dropdown mt-auto">
                 <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
                     <strong></strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow">
-                    <li><a class="dropdown-item" href="#">Configuración</a></li>
-                    <li><a class="dropdown-item" href="#">Perfil</a></li>
-                    <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                    <li><a class="dropdown-item" href="index.html">Inicio</a></li>
+                    <li><a class="dropdown-item" href="#" id="cerrarSesionBtn">Cerrar sesión</a></li>
+                </ul>
+            </div> -->
+            <div class="dropdown mt-auto px-2">
+                <a href="javascript:void(0)" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+
+                    <img src="../assets/admin.webp" alt="Usuario" width="40" height="40" class="rounded-circle me-2">
+
+                    <strong id="sidebarNombre">Administrador</strong>
+                </a>
+
+                <ul class="dropdown-menu text-small shadow">
+                    <li><a class="dropdown-item" href="index.html">Inicio</a></li>
+                    <li><a class="dropdown-item" href="#" id="btnCerrarSesionSidebar">Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>
     </aside>
-    
+
     <script src="../Script/nav.js"></script>
+    <script src="../Script/navLogeadoActivo.js"></script>
 </body>
+
 </html>
