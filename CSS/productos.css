@@ -55,11 +55,11 @@ body {
 .card-img-wrap {
     position: relative;
     background: #F8F8FF;
-    padding: 1rem;
+    padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 200px;
+    height: 400px;
     overflow: hidden;
 }
 
@@ -75,7 +75,8 @@ body {
 
 /* Imagen principal */
 .img-principal {
-    max-height: 150px;
+    max-height: 220px;
+    max-width: 100%;
     object-fit: contain;
     transition: opacity 0.35s ease, transform 0.35s ease;
     position: relative;
@@ -84,7 +85,8 @@ body {
 
 /* Imagen secundaria — oculta por defecto, se posiciona encima */
 .img-secundaria {
-    max-height: 150px;
+    max-height: 220px;
+    max-width: 100%;
     object-fit: contain;
     position: absolute;
     top: 50%;

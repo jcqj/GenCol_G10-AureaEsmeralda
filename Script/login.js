@@ -107,6 +107,15 @@ function simpleHash(str) {
     return 'h_' + Math.abs(hash).toString(16);
 }
 
+
+const ADMIN = {
+    email: "admin@aurea.com",
+    passwordHash: simpleHash("AureaAdmin2026!"),
+    rol: "admin",
+    nombreCompleto: "Administrador"
+};
+
+
 // - Leer los usuarios registrados
 function getUsuarios() {
     try {
@@ -137,7 +146,10 @@ function validateEmail() {
 
     //Veriicar que el correo se encuentre registrado
     const usuarios = getUsuarios();
-    const existe = usuarios.some(u => u.email === v.toLowerCase());
+
+    const existe =
+        usuarios.some(u => u.email === v.toLowerCase()) ||
+        v.toLowerCase() === ADMIN.email;
     if (!existe) {
         showError(inputEmail, 'err-email', 'err-email-text', 'Este correo no esta registrado.')
         return false;
@@ -264,6 +276,24 @@ form.addEventListener('submit', (e) => {
     const email = inputEmail.value.trim().toLowerCase();
     const hashPass = simpleHash(inputPass.value);
     const usuarios = getUsuarios();
+    if (
+        email === ADMIN.email &&
+        hashPass === ADMIN.passwordHash
+    ) {
+        localStorage.setItem('aureaEsmeraldaSession', JSON.stringify({
+            email: ADMIN.email,
+            nombre: ADMIN.nombreCompleto,
+            rol: ADMIN.rol
+        }));
+
+        showToast('success', '¡Bienvenido Administrador!', 'Iniciando sesión...');
+
+        setTimeout(() => {
+            window.location.href = '../HTML/adminHome.html';
+        }, 1800);
+
+        return;
+    }
 
     const usuario = usuarios.find(u => u.email === email && u.passwordHash === hashPass);
 

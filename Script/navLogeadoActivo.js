@@ -3,20 +3,35 @@ async function cargarNav() {
     const archivo = session ? '../HTML/navLogin.html' : '../HTML/nav.html';
 
     try {
-        const res  = await fetch(archivo);
+        const res = await fetch(archivo);
         const html = await res.text();
 
         const parser = new DOMParser();
-        const doc    = parser.parseFromString(html, 'text/html');
+        const doc = parser.parseFromString(html, 'text/html');
 
         const placeholder = document.getElementById('nav-container')
             || document.getElementById('navbar-placeholder');
+
         if (!placeholder) return;
 
         placeholder.innerHTML = doc.body.innerHTML;
 
+        // Configurar enlace Inicio
+        const linkInicio = document.getElementById('linkInicio');
+
+        if (linkInicio) {
+            if (session?.rol === 'admin') {
+                linkInicio.href = '../HTML/adminHome.html';
+            } else {
+                linkInicio.href = '../HTML/index.html';
+            }
+        }
+
         iniciarBadgeCarrito();
-        if (session) iniciarSidebar(session);
+
+        if (session) {
+            iniciarSidebar(session);
+        }
 
     } catch (err) {
         console.error('navLogeadoActivo: error cargando navbar:', err);

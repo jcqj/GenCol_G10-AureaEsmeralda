@@ -15,36 +15,16 @@
 </head>
 
 <body>
-    <!--! SIDEBAR -->
-    <aside class="offcanvas offcanvas-md offcanvas-start flex-shrink-0 sidebar" tabindex="-1" id="sidebar">
-        <div class="offcanvas-header d-md-none pb-0">
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
-        </div>
-        <div class="d-flex flex-column flex-shrink-0 p-3 h-100">
-            <span class="fs-4 tituloAdministrador">Administrador</span>
-            <hr>
-            <ul class="nav flex-column mb-auto">
-                <li class="nav-item">
-                    <a href="adminHome.html" class="nav-link linkHome">Home</a>
-                </li>
-                <li>
-                    <a href="adminAddProduct.html" class="nav-link active linkAProductos">Productos</a>
-                </li>
-            </ul>
-            <div class="dropdown mt-auto">
-                <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                    <strong></strong>
-                </a>
-                <ul class="dropdown-menu text-small shadow">
-                    <li><a class="dropdown-item" href="#">Configuración</a></li>
-                    <li><a class="dropdown-item" href="#">Perfil</a></li>
-                    <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
-                </ul>
-            </div>
-        </div>
-    </aside>
+    <!--!INICIO SIDEBAR-->
+
+    <div id="sidebar-container">
+    </div>
+    <!--!FIN SIDEBAR-->
+
+    <button class="btn d-md-none m-3 admin-toggle-btn" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Abrir menú administrador">
+        ☰
+    </button>
 
     <div class="flex-grow-1 container-agregar">
         <div class="container text-center">
@@ -147,7 +127,8 @@
 
                                 <!-- Nombre -->
                                 <div class="mb-3">
-                                    <label for="nombreProducto" class="form-label label-required">Título de la joya</label>
+                                    <label for="nombreProducto" class="form-label label-required">Título de la
+                                        joya</label>
                                     <input type="text" class="form-control" id="nombreProducto"
                                         placeholder="Ej: Anillo de oro 18k" required>
                                     <div class="invalid-feedback">El nombre es obligatorio.</div>
@@ -200,9 +181,10 @@
 
                                 <!-- Stock -->
                                 <div class="mb-3">
-                                    <label for="cantidadProducto" class="form-label label-required">Cantidad en stock</label>
-                                    <input type="number" class="form-control" id="cantidadProducto"
-                                        placeholder="Ej: 10" min="0" required>
+                                    <label for="cantidadProducto" class="form-label label-required">Cantidad en
+                                        stock</label>
+                                    <input type="number" class="form-control" id="cantidadProducto" placeholder="Ej: 10"
+                                        min="0" required>
                                     <div class="invalid-feedback">Ingresa una cantidad válida.</div>
                                 </div>
 
@@ -228,7 +210,8 @@
 
                                 <!-- Fecha -->
                                 <div class="mb-3">
-                                    <label for="fechaProducto" class="form-label label-required">Fecha de ingreso</label>
+                                    <label for="fechaProducto" class="form-label label-required">Fecha de
+                                        ingreso</label>
                                     <input type="date" class="form-control" id="fechaProducto" required>
                                     <div class="invalid-feedback">Selecciona una fecha.</div>
                                 </div>
@@ -251,7 +234,8 @@
                                         <i class="bi bi-image-alt me-1"></i> Imagen secundaria
                                         <span class="text-muted small">(aparece al pasar el cursor)</span>
                                     </label>
-                                    <input type="file" class="form-control" id="imagenSecundariaProducto" accept="image/*">
+                                    <input type="file" class="form-control" id="imagenSecundariaProducto"
+                                        accept="image/*">
                                     <div id="previewImagenSecundaria" class="mt-2 d-none">
                                         <img id="imgPreviewSecundaria" src="" alt="Preview secundaria"
                                             class="img-thumbnail" style="max-height: 120px;">
@@ -279,6 +263,7 @@
         crossorigin="anonymous"></script>
     <script src="../Script/footerScript.js"></script>
     <script src="../Script/adminAddProduct.js"></script>
+    <script src="../Script/sideBar.js"></script>
 </body>
 
 </html>
