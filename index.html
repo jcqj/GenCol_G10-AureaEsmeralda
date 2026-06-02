@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- fonts para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="./CSS/nav.css" />
+    <link rel="stylesheet" href="./CSS/navLogin.css">
+    <link rel="stylesheet" href="./CSS/index.css">
+    <title>Aurea esmeralda</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg px-4">
+        <div class="container-fluid navbar-content">
+
+            <!--# Logo Izquierda -->
+            <a class="navbar-brand l miLogo" href="./HTML/index.html">
+                <img src="./assets/logo-blanco.svg" alt="Logo">
+                <img src="./assets/nombre-logo.svg" alt="nombremarca" class="nombreMarca">
+            </a>
+
+            <!--# Botón responsive o hamburguesa -->
+            <button class="navbar-toggler btnHambur" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon btnHamburIcon"></span>
+            </button>
+
+            <!--# Contenido de la pagina-->
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+
+                <!--# Menú -->
+                <ul class="navbar-nav mx-auto gap-3 menu">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="./HTML/index.html">Inicio</a>
+                    </li>
+
+                    <!--# Dropdown CATALOGO -->
+                    <li class="nav-item dropdown Catalago">
+                        <a class="nav-link dropdown-toggle" href="./HTML/productos.html" data-bs-toggle="dropdown">
+                            Catálogo
+                        </a>
+                        <ul class="dropdown-menu listaCatalago">
+                            <li><a class="dropdown-item" href="./HTML/productos.html">Todos</a></li>
+                            <li><a class="dropdown-item" href="./HTML/productos.html?categoria=Anillos">Anillos</a></li>
+                            <li><a class="dropdown-item" href="./HTML/productos.html?categoria=Aretes">Aretes</a></li>
+                            <li><a class="dropdown-item" href="./HTML/productos.html?categoria=Collares">Collares</a>
+                            </li>
+                            <li><a class="dropdown-item" href="./HTML//productos.html?categoria=Pulseras">Pulseras</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!--# Dropdown pagina ABOUTUS -->
+                    <li class="nav-item dropdown sobreNosotros">
+                        <a class="nav-link dropdown-toggle" href="./HTML/aboutUs.html#main-about"
+                            data-bs-toggle="dropdown">
+                            Sobre nosotros
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./HTML/aboutUs.html">¿Quienes somos?</a></li>
+                            <li><a class="dropdown-item" href="./HTML/aboutUs.html#mision">Mision</a></li>
+                            <li><a class="dropdown-item" href="./HTML/aboutUs.html#vision">Vision</a></li>
+                            <li><a class="dropdown-item" href="./HTML/aboutUs.html#equipo">Equipo de desarrollo</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item Certificados">
+                        <a class="nav-link" href="./HTML/certificado.html">Certificados</a>
+                    </li>
+
+                    <li class="nav-item Contactanos">
+                        <a class="nav-link" href="./HTML/contact.html">Contáctanos</a>
+                    </li>
+
+                </ul>
+
+                <!--# Iconos Derecha -->
+                <div class="d-flex gap-3 botones">
+
+                    <a href="./HTML/login.html"><button onclick="" class="btn btn-success rounded-circle">
+                            <i class="fa-solid fa-user"></i>
+                        </button></a>
+
+                    <!-- <a href="./favoritos.html"><button onclick="" class="btn btn-success rounded-circle">
+                        <i class="fa-solid fa-heart"></i>
+                    </button></a> -->
+
+                    <a href="./HTML/carrito.html">
+                        <button class="btn btn-success rounded-circle position-relative">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span id="cart-badge" class="cart-badge-style">0</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <section class="hero">
+
+            <!-- IMAGEN -->
+            <img src="./assets/banner-home-page.png" class="hero__img">
+
+            <!-- CONTENIDO -->
+            <div class="hero__content">
+                <p class="hero_tagline">AUTENTICIDAD CERTIFICADA</p>
+
+                <h1 class="hero_title">
+                    El verdadero lujo<br>es la autenticidad
+                </h1>
+
+                <p class="hero_subtitle">
+                    Compra joyas verificadas con total transparencia y confianza.
+                </p>
+
+                <div class="hero_buttons">
+                    <a href="./productos.html" class="btn btn-gold">Ver colección</a>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="video-section">
+
+            <video autoplay muted loop playsinline>
+                <source src="./assets/VideoInicio.mp4" type="video/mp4">
+            </video>
+
+            <div class="video-overlay">
+                <h2>Aurea</h2>
+                <span class="text-center">JOYERÍA DE LUJO | DISEÑO PARA SIEMPRE</span>
+            </div>
+
+        </section>
+
+
+
+        <section class="categorias">
+            <h2>CATEGORÍAS</h2>
+
+            <div class="categorias-grid">
+
+                <a href="./HTML/productos.html?categoria=Anillos" class="categoria">
+                    <img src="./assets/AnilloCategoria.png" alt="anillos">
+                    <span><strong>ANILLOS</strong></span>
+                </a>
+
+                <a href="./HTML/productos.html?categoria=Pulseras" class="categoria">
+                    <img src="./assets/PulseraTennisEsmeraldasRL.png" alt="pulseras">
+                    <span><strong>PULSERAS</strong></span>
+                </a>
+
+                <a href="../HTML/productos.html?categoria=Collares" class="categoria">
+                    <img src="./assets/CollareCategoria.png" alt="collares">
+                    <span><strong>COLLARES</strong></span>
+                </a>
+
+                <a href="./HTML/productos.html?categoria=Aretes" class="categoria">
+                    <img src="./assets/aretes_joyeria-medellin_a7abce74-6b3d-4225-9536-d05567717e3c.webp" alt="aretes">
+                    <span> <strong>ARETES</strong></span>
+                </a>
+
+            </div>
+        </section>
+
+        <section class="historia">
+
+            <div class="img-box"><img src="./assets/barrauno.jpg" alt="imagenes-sobre-nosotros"></div>
+            <div class="img-box"><img src="./assets/barrados.jpg" alt="imagenes-sobre-nosotros"></div>
+            <div class="img-box"><img src="./assets/barratres.jpg" alt="imagenes-sobre-nosotros"></div>
+            <div class="img-box"><img src="./assets/barracuatro.jpg" alt="imagenes-sobre-nosotros"></div>
+
+            <div class="overlay">
+                <h3>Esencia que trasciende</h3>
+                <a href="./HTML/aboutUs.html">Más Info aquí</a>
+            </div>
+
+        </section>
+
+
+
+        <section class="razones">
+
+            <div class="razones-titulo">
+                <h2><strong>Razones para elegir Aurea</strong></h2>
+            </div>
+
+            <div class="razones-container">
+
+                <div class="razon-card">
+                    <i class="fa-solid fa-lock candadoIcon" style="color: rgb(212, 175, 55);"></i>
+                    <h3>Compra segura</h3>
+                    <p>
+                        Protegemos cada compra para que
+                        tengas una experiencia confiable
+                        y sin preocupaciones.
+                    </p>
+                </div>
+
+                <div class="razon-card">
+                    <i class="fa-regular fa-gem esmeraldaIcon" style="color: rgb(212, 175, 55);"></i>
+                    <h3>Calidad premium</h3>
+                    <p>
+                        Seleccionamos productos con
+                        acabados elegantes y materiales
+                        de alta calidad.
+                    </p>
+                </div>
+
+                <div class="razon-card">
+                    <i class="fa-regular fa-comments globosConveIcon" style="color: rgb(212, 175, 55);"></i>
+                    <h3>Atención personalizada</h3>
+                    <p>
+                        Nuestro equipo está disponible
+                        para ayudarte en cada paso
+                        de tu compra.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="bannerFinal">
+
+            <div class="overlay"></div>
+
+            <!-- CONTENIDO -->
+            <div class="hablanos">
+                <p class="tituloP">Compromiso</p>
+
+                <p class="contenidoHablanos">
+                    Diseños exclusivos en esmeraldas naturales. Contáctanos hoy y cotiza la joya de tus sueños.
+                </p>
+
+                <div class="hero_buttons">
+                    <a href="./HTML/contact.html" class="btnBanner">
+                        ¡Contactanos!
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+        <div id="footer-container"></div> <!-- se llamma el footer desde otro archivo -->
+    </footer>
+
+    <!-- ! BOOTSTRAP 5.3.8 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+        </script>
+    <!-- <script src="../Script/nav.js"></script> -->
+    <script src="./Script/navLogeadoActivo.js"></script>
+    <script src="./Script/footerScript.js"></script>
+</body>
+
+</html>
